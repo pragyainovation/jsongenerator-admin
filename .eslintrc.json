@@ -1,0 +1,60 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "ignorePatterns": ["node_modules/", ".next/"],
+  "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:@next/next/recommended", "plugin:prettier/recommended", "plugin:react-hooks/recommended", "plugin:jsx-a11y/recommended", "plugin:import/errors", "plugin:import/warnings"],
+  "plugins": ["prettier", "react", "react-hooks", "jsx-a11y", "import"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "rules": {
+    "prettier/prettier": ["error", { "endOfLine": "auto" }],
+    "no-console": ["warn", { "allow": ["warn", "error"] }],
+    "no-debugger": "warn",
+    "semi": ["error", "always"],
+    "quotes": ["error", "single", { "allowTemplateLiterals": true }],
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "eqeqeq": ["error", "always"],
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+    "no-undef": "error",
+    "prefer-const": "warn",
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-uses-react": "off",
+    "react/jsx-uses-vars": "error",
+    "react-hooks/rules-of-hooks": "error",
+    // "react-hooks/exhaustive-deps": "warn",
+    "jsx-a11y/anchor-is-valid": "warn",
+    "import/no-unresolved": "warn",
+    "import/named": "error",
+    "import/default": "error",
+    "import/no-duplicates": "warn",
+    "curly": "error",
+    "no-else-return": "warn",
+    "consistent-return": "warn",
+    "default-case": "warn",
+    "no-empty-function": "warn",
+    "no-useless-return": "warn",
+    "array-callback-return": "warn"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "alias": {
+        "map": [
+          ["@", "./"] // Customize this based on your project structure
+        ],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  }
+}

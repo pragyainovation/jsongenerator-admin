@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --primary: #2f3133;
+  --secondary: #171717;
+  --light: #ccd0d5;
+  --ligthGreen: #90ee90, --error-background: #ffcccc;
+  --warn-background: #ffffcc;
+  --info-background: #e5f4ff;
+  --black: #000;
+  --gray-1: #40454b;
+  --gray-2: #808a96;
+  --gray-3: #99a1ab;
+  --gray-4: #ccd0d5;
+  --gray-5: #f2f3f4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  @apply bg-[var(--background)] text-[var(--foreground)] w-full h-full; /* Light mode styles */
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Dark mode styles */
+.dark body {
+  @apply bg-[var(--foreground)] text-[var(--background)] /* Dark mode styles */;
+}
+.custom-scrollbar {
+  /* Define a fixed height or width for the scrollable area */
+  overflow-y: auto;
+}
+
+/* Custom scrollbar styles */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px; /* Width of the vertical scrollbar */
+  height: 8px; /* Height of the horizontal scrollbar */
+}
+
+/* Scrollbar track (background) */
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Light gray background for track */
+  border-radius: 10px;
+}
+
+/* Scrollbar thumb (the draggable part) */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--secondary); /* Darker thumb */
+  border-radius: 10px;
+}
+
+/* Hover effect for thumb */
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary); /* Darker shade when hovering */
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.threedotloader {
+  animation: threedots 1.2s infinite ease-in-out;
+  background-color: #000; /* Black dots */
+}
+
+.threedotloader:nth-child(1) {
+  animation-delay: 0s; /* No delay for the first dot */
+}
+
+.threedotloader:nth-child(2) {
+  animation-delay: 0.2s; /* Slight delay for the second dot */
+}
+
+.threedotloader:nth-child(3) {
+  animation-delay: 0.4s; /* Slightly more delay for the third dot */
+}
+
+@keyframes threedots {
+  0%,
+  80%,
+  100% {
+    transform: scale(0); /* Smallest size */
+    opacity: 0.5; /* Faded out */
+  }
+  40% {
+    transform: scale(1); /* Full size */
+    opacity: 1; /* Fully visible */
+  }
+}

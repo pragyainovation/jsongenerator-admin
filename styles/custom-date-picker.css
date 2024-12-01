@@ -1,0 +1,4 @@
+/* Custom styles for the DateRange calendar */
+.rdrDayNumber span::after {
+  background: var(--secondary) !important;
+}
