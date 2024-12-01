@@ -5,7 +5,6 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = getInitState({});
 
-
 export const getTicketlist = handleAsyncThunk({
   thunkName: THUNK_NAME.LIST_TICKET,
   apiName: 'list',
@@ -35,7 +34,6 @@ const ticketSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-
     handleAsyncState(builder, getTicketlist);
 
     handleAsyncState(builder, closeTicket, true);

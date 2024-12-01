@@ -34,10 +34,8 @@ const usersSlice = createSlice({
         state.data[name] = value;
       }
     },
-
   },
   extraReducers: (builder) => {
-
     handleAsyncState(builder, updateUser, true);
 
     handleAsyncState(builder, getUsersList);

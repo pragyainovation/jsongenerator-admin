@@ -56,8 +56,8 @@ function useUsersList() {
 
   // table function
 
-  const handleAction = (buttonData, rowData)  => {
-    switch(buttonData){
+  const handleAction = (buttonData, rowData) => {
+    switch (buttonData) {
       case BUTTON.EDIT: {
         dispatch(setUserData({ name: 'userData', value: rowData }));
         setOpenDialog(BUTTON.EDIT);
@@ -66,18 +66,18 @@ function useUsersList() {
       case BUTTON.VIEW: {
         dispatch(setUserData({ name: 'userData', value: rowData }));
         setOpenOverlay(BUTTON.VIEW);
+        return;
       }
       default:
         console.error('Action not recognized.');
     }
-
-  }
+  };
 
   const handleConfirm = async (openDialog) => {
     switch (openDialog) {
       case BUTTON.EDIT: {
         setOpenOverlay(BUTTON.EDIT);
-        setOpenDialog(null)
+        setOpenDialog(null);
         return;
       }
       default:
@@ -145,13 +145,12 @@ function useUsersList() {
       Cell: ({ row }) => {
         return (
           <div>
-            <ActionTab isView isEdit onClick={(data)=>handleAction(data, row?.original)} />
+            <ActionTab isView isEdit onClick={(data) => handleAction(data, row?.original)} />
           </div>
         );
       },
     },
   ];
-
 
   const onPageChange = ({ page, pageSelector }) => {
     if (page >= 0) {
@@ -178,4 +177,4 @@ function useUsersList() {
   };
 }
 
-export default useUsersList
+export default useUsersList;

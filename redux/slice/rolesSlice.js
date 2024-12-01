@@ -34,10 +34,8 @@ const rolesSlice = createSlice({
         state.data[name] = value;
       }
     },
-
   },
   extraReducers: (builder) => {
-
     handleAsyncState(builder, updateRoles, true);
 
     handleAsyncState(builder, getRolesList);

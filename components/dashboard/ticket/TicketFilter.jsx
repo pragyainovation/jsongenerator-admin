@@ -1,12 +1,9 @@
-import { setTicketData, ticketData } from '@/redux/slice/ticketSlice';
 import { OPTIONS } from '@/utils/options/commonOptions';
 import { formatDate } from '@/utils/timeFunction';
 import Button from '@/widgets/button/Button';
 import CustomDatePicker from '@/widgets/date/CustomDatePicker';
 import SimpleDropdown from '@/widgets/dropdown/SimpleDropdown';
-import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
 
 function TicketFilter({ handleFilter, onClose }) {
   const { handleSubmit, control, reset } = useForm({

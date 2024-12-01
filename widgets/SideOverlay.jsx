@@ -9,11 +9,7 @@ const SideOverlay = ({ isOpen, onClose, children, title, className }) => {
       <div className={`fixed inset-0 z-10 transition-opacity bg-black ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}></div>
 
       {/* Side Panel */}
-      <div className={classNames('fixed top-0 right-0 h-full w-full sm:w-80 p-2 grid grid-rows-[auto_1fr] overflow-hidden bg-white shadow-lg z-20 transform transition-transform',
-          {'translate-x-0' : isOpen},
-          {'translate-x-full': !isOpen},
-          className
-         )}>
+      <div className={classNames('fixed top-0 right-0 h-full w-full sm:w-80 p-2 grid grid-rows-[auto_1fr] overflow-hidden bg-white shadow-lg z-20 transform transition-transform', { 'translate-x-0': isOpen }, { 'translate-x-full': !isOpen }, className)}>
         {/* Header */}
         <div className="h-10 border-b border-b-gray4 flex w-full bg-white items-center justify-between">
           <h2 className="">{title}</h2>

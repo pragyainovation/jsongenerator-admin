@@ -7,17 +7,17 @@ export const THUNK_NAME = {
 
   //analytics
   ANALYTICS: `${SLICE_NAME.ANALYTICS}/getData`,
-  
+
   // users
   LIST_USERS: `${SLICE_NAME.USERS}/list`,
   UPDATE_USERS: `${SLICE_NAME.USERS}/update`,
 
-    // roles
-    LIST_ROLES: `${SLICE_NAME.ROLES}/list`,
-    UPDATE_ROLES: `${SLICE_NAME.ROLES}/update`,
+  // roles
+  LIST_ROLES: `${SLICE_NAME.ROLES}/list`,
+  UPDATE_ROLES: `${SLICE_NAME.ROLES}/update`,
 
-    // permission
-    LIST_PERMISSION: `${SLICE_NAME.PERMISSION}/list`,
+  // permission
+  LIST_PERMISSION: `${SLICE_NAME.PERMISSION}/list`,
 
   // profile
   UPDATE_PROFILE: `${SLICE_NAME.PROFILE}/updateProfile`,

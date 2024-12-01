@@ -56,8 +56,8 @@ function useRolesList() {
 
   // table function
 
-  const handleAction = (buttonData, rowData)  => {
-    switch(buttonData){
+  const handleAction = (buttonData, rowData) => {
+    switch (buttonData) {
       case BUTTON.EDIT: {
         dispatch(setRolesData({ name: 'roleData', value: rowData }));
         setOpenDialog(BUTTON.EDIT);
@@ -66,19 +66,18 @@ function useRolesList() {
       case BUTTON.VIEW: {
         dispatch(setRolesData({ name: 'roleData', value: rowData }));
         setOpenOverlay(BUTTON.VIEW);
-        return
+        return;
       }
       default:
         console.error('Action not recognized.');
     }
-
-  }
+  };
 
   const handleConfirm = async (openDialog) => {
     switch (openDialog) {
       case BUTTON.EDIT: {
         setOpenOverlay(BUTTON.EDIT);
-        setOpenDialog(null)
+        setOpenDialog(null);
         return;
       }
       default:
@@ -132,13 +131,12 @@ function useRolesList() {
       Cell: ({ row }) => {
         return (
           <div>
-            <ActionTab isView isEdit={row?.original?.roleName !== ROLES.ADMIN} onClick={(data)=>handleAction(data, row?.original)} />
+            <ActionTab isView isEdit={row?.original?.roleName !== ROLES.ADMIN} onClick={(data) => handleAction(data, row?.original)} />
           </div>
         );
       },
     },
   ];
-
 
   const onPageChange = ({ page, pageSelector }) => {
     if (page >= 0) {
@@ -165,4 +163,4 @@ function useRolesList() {
   };
 }
 
-export default useRolesList
+export default useRolesList;

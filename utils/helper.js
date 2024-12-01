@@ -82,8 +82,8 @@ export function handleAsyncThunk({
         auth,
       });
       const apiConfig = commonAPI ? commonApiList[apiName] : apiList[apiName];
-      const { method  } = apiConfig;
-      
+      const { method } = apiConfig;
+
       method.toUpperCase() !== 'POST' && showToast(response?.message, STATUS.SUCCESS);
 
       return response?.data ?? response;
@@ -149,21 +149,21 @@ export const setNestedValue = (obj, path, value) => {
 
 export function groupBy(data, groupKey, valueKeys) {
   return data.reduce((acc, item) => {
-      const groupValue = item[groupKey];
+    const groupValue = item[groupKey];
 
-      // Agar category/group exist nahi karti, to ek empty array banaye
-      if (!acc[groupValue]) {
-          acc[groupValue] = [];
-      }
+    // Agar category/group exist nahi karti, to ek empty array banaye
+    if (!acc[groupValue]) {
+      acc[groupValue] = [];
+    }
 
-      // Selected fields ko object me leke push kare
-      const value = valueKeys.reduce((obj, key) => {
-          obj[key] = item[key];
-          return obj;
-      }, {});
+    // Selected fields ko object me leke push kare
+    const value = valueKeys.reduce((obj, key) => {
+      obj[key] = item[key];
+      return obj;
+    }, {});
 
-      acc[groupValue].push(value);
+    acc[groupValue].push(value);
 
-      return acc;
+    return acc;
   }, {});
 }

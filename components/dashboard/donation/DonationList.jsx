@@ -2,7 +2,6 @@ import useDonationList from '@/hooks/donation/useDonationList';
 import FilterIcon from '@/icon/FilterIcon';
 import { loaderHandler } from '@/utils/helper';
 import Button from '@/widgets/button/Button';
-import SimpleLoader from '@/widgets/loader/SimpleLoader';
 import SideOverlay from '@/widgets/SideOverlay';
 import DataTable from '@/widgets/table/DataTable';
 import classNames from 'classnames';
@@ -20,18 +19,17 @@ function DonationList() {
         'grid-rows-[auto_1fr]': !loaderHandler(isLoading),
       })}
     >
-             <LoaderWarpper isLoading={isLoading}>
-
-      {/* filter and notice */}
-      <div>
-        <div className="flex justify-end">
-          <Button onClick={() => setOpenOverlay(BUTTON.FILTER)} icon={<FilterIcon iconClass={'text-white'} />} />
+      <LoaderWarpper isLoading={isLoading}>
+        {/* filter and notice */}
+        <div>
+          <div className="flex justify-end">
+            <Button onClick={() => setOpenOverlay(BUTTON.FILTER)} icon={<FilterIcon iconClass={'text-white'} />} />
+          </div>
+          <div className="mb-1">{data?.donationList?.docs && <span className="text-sm px-1 text-red-500"> Notice: Every created payment expires after 30 minutes.</span>}</div>
         </div>
-        <div className="mb-1">{data?.donationList?.docs && <span className="text-sm px-1 text-red-500"> Notice: Every created payment expires after 30 minutes.</span>}</div>
-      </div>
 
-      {/* table */}
-      <div className="overflow-y-auto scrollbar-hide">{data?.donationList?.docs && <DataTable columns={columns} data={data?.donationList} onPageChange={onPageChange} />}</div>
+        {/* table */}
+        <div className="overflow-y-auto scrollbar-hide">{data?.donationList?.docs && <DataTable columns={columns} data={data?.donationList} onPageChange={onPageChange} />}</div>
       </LoaderWarpper>
 
       {/* side overlay */}
@@ -39,8 +37,8 @@ function DonationList() {
         <DonationFilter handleFilter={handleFilter} onClose={() => setOpenOverlay(null)} />
       </SideOverlay>
 
-      <SideOverlay isOpen={openOverlay === BUTTON.VIEW} onClose={() => setOpenOverlay(null)} className={"sm:w-[50vw]"} title="View Donation">
-        {openOverlay === BUTTON.VIEW &&<DonationForm openOverlay={openOverlay} />}
+      <SideOverlay isOpen={openOverlay === BUTTON.VIEW} onClose={() => setOpenOverlay(null)} className={'sm:w-[50vw]'} title="View Donation">
+        {openOverlay === BUTTON.VIEW && <DonationForm openOverlay={openOverlay} />}
       </SideOverlay>
     </div>
   );

@@ -1,2 +1,2 @@
-npm run format
 npm run husky:run
+npm run format

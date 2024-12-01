@@ -34,7 +34,7 @@ const InputField = ({
   };
   return (
     <div className="flex flex-col gap-1 w-full">
-      <label className='capitalize'>
+      <label className="capitalize">
         {label && label}
         {label && isRequired && <span className="text-red-500">*</span>}
       </label>
@@ -53,7 +53,7 @@ const InputField = ({
               'w-full px-2 py-1 rounded border transition-colors duration-300 italic',
               'focus:outline-none focus:ring-[1px] focus:ring-secondary focus:border-secondary',
               'border-gray5 text-gray1 bg-white shadow-sm',
-              {'!bg-gray5': readOnly},
+              { '!bg-gray5': readOnly },
               inputClassName, // Use dynamic class passed in inputClassName
               {
                 'pr-14': isLoading, // Add right padding if the loader is present

@@ -21,17 +21,13 @@ function UsersList() {
       })}
     >
       <LoaderWarpper isLoading={isLoading}>
+        {/* searchbar */}
+        <div className="mb-2 flex justify-end gap-2">
+          <SearchBar className="w-full sm:w-auto" onSearchValue={(searchValue) => searchListData(searchValue)} placeholder="Search user..." />
+        </div>
 
-      {/* searchbar */}
-      <div className="mb-2 flex justify-end gap-2">
-        <SearchBar className="w-full sm:w-auto" onSearchValue={(searchValue) => searchListData(searchValue)} placeholder="Search user..." />
-      </div>
-
-      {/* user's data */}
-      <div className="overflow-y-auto scrollbar-hide">
-        {data?.usersList?.docs && <DataTable columns={columns} data={data?.usersList} onPageChange={onPageChange} />}
-      </div>
-
+        {/* user's data */}
+        <div className="overflow-y-auto scrollbar-hide">{data?.usersList?.docs && <DataTable columns={columns} data={data?.usersList} onPageChange={onPageChange} />}</div>
       </LoaderWarpper>
 
       {/* dialogbox */}
@@ -40,14 +36,13 @@ function UsersList() {
       </DialogBox>
 
       {/* side overlay */}
-      <SideOverlay isOpen={openOverlay === BUTTON.EDIT} onClose={() => setOpenOverlay(null)} className={"sm:w-[50vw]"} title="Edit User">
+      <SideOverlay isOpen={openOverlay === BUTTON.EDIT} onClose={() => setOpenOverlay(null)} className={'sm:w-[50vw]'} title="Edit User">
         {openOverlay === BUTTON.EDIT && <UserForm openOverlay={openOverlay} setOpenOverlay={setOpenOverlay} />}
       </SideOverlay>
 
-      <SideOverlay isOpen={openOverlay === BUTTON.VIEW} onClose={() => setOpenOverlay(null)} className={"sm:w-[50vw]"} title="View User">
-        {openOverlay === BUTTON.VIEW &&<UserForm openOverlay={openOverlay} />}
+      <SideOverlay isOpen={openOverlay === BUTTON.VIEW} onClose={() => setOpenOverlay(null)} className={'sm:w-[50vw]'} title="View User">
+        {openOverlay === BUTTON.VIEW && <UserForm openOverlay={openOverlay} />}
       </SideOverlay>
-
     </div>
   );
 }

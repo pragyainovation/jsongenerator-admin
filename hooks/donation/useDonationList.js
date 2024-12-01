@@ -1,8 +1,8 @@
-import { BUTTON, PAYMENT, STATUS, TABLE_DEFAULT_LIMIT } from '@/constant/common/constant';
+import { BUTTON, STATUS, TABLE_DEFAULT_LIMIT } from '@/constant/common/constant';
 import MOMENT_FORMATS from '@/constant/common/momentConstant';
-import { donationData, getDonationList, getDonationUrl, setDonationData, updateDonationData } from '@/redux/slice/donationSlice';
+import { donationData, getDonationList, setDonationData } from '@/redux/slice/donationSlice';
 import showToast from '@/utils/showToast';
-import { formatDate, getCurrentDate, getDateDifference } from '@/utils/timeFunction';
+import { formatDate } from '@/utils/timeFunction';
 import ActionTab from '@/widgets/table/ActionTab';
 import CustomHeader from '@/widgets/table/CustomCell';
 import { useEffect, useState } from 'react';
@@ -42,32 +42,31 @@ function useDonationList() {
     getFetchData(value);
   };
 
-  const handleAction = (buttonData, rowData, setCopied)  => {
-    switch(buttonData){
+  const handleAction = (buttonData, rowData, setCopied) => {
+    switch (buttonData) {
       case BUTTON.COPY: {
         navigator.clipboard
-        .writeText(rowData?.paymentId)
-        .then(() => {
-          setCopied(true);
-          setTimeout(() => {
-            setCopied(false);
-          }, 2000);
-        })
-        .catch((err) => {
-          showToast(err?.message ?? err);
-        });
-        return;
+          .writeText(rowData?.paymentId)
+          .then(() => {
+            setCopied(true);
+            setTimeout(() => {
+              setCopied(false);
+            }, 2000);
+          })
+          .catch((err) => {
+            showToast(err?.message ?? err);
+          });
+        break;
       }
       case BUTTON.VIEW: {
-        dispatch(setDonationData({name: 'donationData', value: rowData}))
-        setOpenOverlay(BUTTON.VIEW)
-        
+        dispatch(setDonationData({ name: 'donationData', value: rowData }));
+        setOpenOverlay(BUTTON.VIEW);
+        break;
       }
       default:
         console.error('Action not recognized.');
     }
-
-  }
+  };
 
   const columns = [
     {
@@ -123,7 +122,8 @@ function useDonationList() {
       accessor: 'action',
       Cell: ({ row }) => {
         return (
-          <div><ActionTab isCopy isView onClick={(data, setCopied)=>handleAction(data, row?.original, setCopied)} />
+          <div>
+            <ActionTab isCopy isView onClick={(data, setCopied) => handleAction(data, row?.original, setCopied)} />
           </div>
         );
       },

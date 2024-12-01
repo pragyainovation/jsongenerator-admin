@@ -1,7 +1,5 @@
 import { BUTTON, STATUS, TABLE_DEFAULT_LIMIT, TICKET } from '@/constant/common/constant';
 import { getTicketlist, setTicketData, ticketData } from '@/redux/slice/ticketSlice';
-import route from '@/route/routes';
-import { ERouter } from '@/utils/helper';
 import ActionTab from '@/widgets/table/ActionTab';
 import CustomHeader from '@/widgets/table/CustomCell';
 import { useEffect, useState } from 'react';
@@ -55,8 +53,8 @@ function useTicketList() {
     getFetchData({ search: value, filter: filterData });
   };
 
-  const handleAction = (buttonData, rowData)  => {
-    switch(buttonData){
+  const handleAction = (buttonData, rowData) => {
+    switch (buttonData) {
       case BUTTON.CLOSE: {
         dispatch(setTicketData({ name: 'ticketData', value: rowData }));
         setOpenDialog(BUTTON.CLOSE);
@@ -65,24 +63,24 @@ function useTicketList() {
       case BUTTON.VIEW: {
         dispatch(setTicketData({ name: 'ticketData', value: rowData }));
         setOpenOverlay(BUTTON.VIEW);
+        break;
       }
       default:
         console.error('Action not recognized.');
     }
-
-  }
+  };
 
   const handleConfirm = async (openDialog) => {
     switch (openDialog) {
       case BUTTON.CLOSE: {
         setOpenOverlay(BUTTON.CLOSE);
-        setOpenDialog(null)
+        setOpenDialog(null);
 
         return;
       }
       case BUTTON.VIEW: {
         setOpenOverlay(BUTTON.VIEW);
-        setOpenDialog(null)
+        setOpenDialog(null);
         return;
       }
       default:
@@ -158,8 +156,8 @@ function useTicketList() {
         const isOpen = row?.original?.status === TICKET.OPEN;
         return (
           <div>
-             <ActionTab isView isClose={isOpen} onClick={(data)=>handleAction(data, row?.original)} />
-           </div>
+            <ActionTab isView isClose={isOpen} onClick={(data) => handleAction(data, row?.original)} />
+          </div>
         );
       },
     },

@@ -1,6 +1,6 @@
 import { THUNK_NAME } from '@/constant/common/asyncThunkName';
 const { SLICE_NAME } = require('@/constant/common/sliceName');
-import { handleAsyncState, handleAsyncThunk, getInitState } from '@/utils/helper';
+import { handleAsyncState, handleAsyncThunk, getInitState, setNestedValue } from '@/utils/helper';
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = getInitState({});
@@ -26,10 +26,9 @@ const donationSlice = createSlice({
         // For simple key-value updates
         state.data[name] = value;
       }
-    }
+    },
   },
   extraReducers: (builder) => {
-
     handleAsyncState(builder, getDonationList);
   },
 });

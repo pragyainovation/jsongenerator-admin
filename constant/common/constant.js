@@ -37,7 +37,7 @@ export const BUTTON = {
   DOWNLOAD: 'download',
   PAYMENT: 'payment',
   FILTER: 'filter',
-  SORT: 'sort'
+  SORT: 'sort',
 };
 
 export const PAYMENT = {
@@ -57,8 +57,8 @@ export const PAYMENT = {
 
 export const ROLES = {
   ADMIN: 'admin',
-  CLIENT: 'client'
-}
+  CLIENT: 'client',
+};
 
 export const TICKET = {
   OPEN: 'open',

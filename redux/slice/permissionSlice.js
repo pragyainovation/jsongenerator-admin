@@ -5,7 +5,6 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = getInitState({});
 
-
 export const getPermissionList = handleAsyncThunk({
   thunkName: THUNK_NAME.LIST_PERMISSION,
   apiName: 'list',
@@ -28,10 +27,8 @@ const permissionSlice = createSlice({
         state.data[name] = value;
       }
     },
-
   },
   extraReducers: (builder) => {
-
     handleAsyncState(builder, getPermissionList);
   },
 });

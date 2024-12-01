@@ -12,12 +12,9 @@ const route = {
   tickets: '/admin/dashboard/tickets',
   doantion: '/admin/dashboard/donation',
 
-  
   profile: '/admin/dashboard/profile',
   editProfile: '/admin/dashboard/profile/edit',
   EditPassword: '/admin/dashboard/profile/edit-password',
-
-
 };
 
 export default route;
