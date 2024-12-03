@@ -27,6 +27,9 @@ export const THUNK_NAME = {
   LIST_DONATION: `${SLICE_NAME.DONATION}/list`,
   UPDATE_DONATION: `${SLICE_NAME.DONATION}/update`,
 
+  // metrics
+  LIST_METRICS: `${SLICE_NAME.METRICS}/list`,
+
   //contact
   LIST_TICKET: `${SLICE_NAME.TICKET}/list`,
   CLOSED_TICKET: `${SLICE_NAME.TICKET}/closeTicket`,

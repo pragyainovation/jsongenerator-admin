@@ -9,6 +9,7 @@ import donationReducer from '@/redux/slice/donationSlice';
 import ticketReducer from '@/redux/slice/ticketSlice';
 import rolesReducer from '@/redux/slice/rolesSlice';
 import permissionReducer from '@/redux/slice/permissionSlice';
+import metricsReducer from '@/redux/slice/metricsSlice';
 import { SLICE_NAME } from '@/constant/common/sliceName';
 
 const store = configureStore({
@@ -23,7 +24,7 @@ const store = configureStore({
     [SLICE_NAME.TICKET]: ticketReducer,
     [SLICE_NAME.ROLES]: rolesReducer,
     [SLICE_NAME.PERMISSION]: permissionReducer,
-    [SLICE_NAME.PERMISSION]: permissionReducer,
+    [SLICE_NAME.METRICS]: metricsReducer,
   },
 });
 

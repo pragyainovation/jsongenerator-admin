@@ -9,4 +9,5 @@ export const SLICE_NAME = {
   PROFILE: 'profile',
   DONATION: 'donation',
   TICKET: 'ticket',
+  METRICS: 'metrics',
 };

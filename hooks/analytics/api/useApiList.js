@@ -1,24 +1,23 @@
 import { BUTTON, STATUS, TABLE_DEFAULT_LIMIT } from '@/constant/common/constant';
 import MOMENT_FORMATS from '@/constant/common/momentConstant';
-import { donationData, getDonationList, setDonationData } from '@/redux/slice/donationSlice';
-import showToast from '@/utils/showToast';
+import { getMetricsList, metricsData, setMetricsData } from '@/redux/slice/metricsSlice';
 import { formatDate } from '@/utils/timeFunction';
 import ActionTab from '@/widgets/table/ActionTab';
 import CustomHeader from '@/widgets/table/CustomCell';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-function useDonationList() {
+function useApiList() {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(TABLE_DEFAULT_LIMIT);
   const [openOverlay, setOpenOverlay] = useState(null);
 
-  const { data, isLoading } = useSelector(donationData);
+  const { data, isLoading } = useSelector(metricsData);
 
   async function getFetchData(filter) {
     const response = await dispatch(
-      getDonationList({
+      getMetricsList({
         data: {
           options: {
             page,
@@ -30,7 +29,7 @@ function useDonationList() {
     );
 
     if (response?.meta?.requestStatus === STATUS.FULFILLED) {
-      dispatch(setDonationData({ name: 'donationList', value: response?.payload }));
+      dispatch(setMetricsData({ name: 'apiList', value: response?.payload }));
     }
   }
 
@@ -42,24 +41,10 @@ function useDonationList() {
     getFetchData(value);
   };
 
-  const handleAction = (buttonData, rowData, setCopied) => {
+  const handleAction = (buttonData, rowData) => {
     switch (buttonData) {
-      case BUTTON.COPY: {
-        navigator.clipboard
-          .writeText(rowData?.paymentId)
-          .then(() => {
-            setCopied(true);
-            setTimeout(() => {
-              setCopied(false);
-            }, 2000);
-          })
-          .catch((err) => {
-            showToast(err?.message ?? err, STATUS.ERROR);
-          });
-        break;
-      }
       case BUTTON.VIEW: {
-        dispatch(setDonationData({ name: 'donationData', value: rowData }));
+        dispatch(setMetricsData({ name: 'apiData', value: rowData }));
         setOpenOverlay(BUTTON.VIEW);
         break;
       }
@@ -72,36 +57,34 @@ function useDonationList() {
     {
       Header: 'No', // Header for the row number column
       accessor: 'No', // Calculate row index
-      Cell: ({ row }) => row.index + data?.donationList?.pagingCounter, // Display the row index (1-based)
+      Cell: ({ row }) => row.index + data?.apiList?.pagingCounter, // Display the row index (1-based)
       width: '0px', // Optional: Set width for the column
     },
     {
-      Header: 'PayemntId',
-      accessor: 'paymentId',
+      Header: 'Endpoint',
+      accessor: 'endpoint',
       Cell: ({ cell }) => {
         return <CustomHeader data={{ value: cell.value }} />;
       },
     },
     {
-      Header: 'Amount',
-      accessor: 'paymentAmount',
-      Cell: ({ cell }) => {
-        return <CustomHeader data={{ value: cell.value / 100 }} />;
-      },
-    },
-    {
-      Header: 'Currency',
-      accessor: 'currency',
+      Header: 'Method',
+      accessor: 'method',
       Cell: ({ cell }) => {
         return <CustomHeader data={{ value: cell.value }} />;
       },
     },
-
     {
-      Header: 'Payment Status',
-      accessor: 'paymentStatus',
+      Header: 'Last Accessed',
+      accessor: 'lastAccessed',
       Cell: ({ cell }) => {
-        return <CustomHeader data={{ value: cell.value }} />;
+        return (
+          <CustomHeader
+            data={{
+              value: formatDate(cell.value, MOMENT_FORMATS.DATE_D_M_YYYY_HH_MM),
+            }}
+          />
+        );
       },
     },
     {
@@ -123,7 +106,7 @@ function useDonationList() {
       Cell: ({ row }) => {
         return (
           <div>
-            <ActionTab isCopy isView onClick={(data, setCopied) => handleAction(data, row?.original, setCopied)} />
+            <ActionTab isView onClick={(data) => handleAction(data, row?.original)} />
           </div>
         );
       },
@@ -150,4 +133,4 @@ function useDonationList() {
   };
 }
 
-export default useDonationList;
+export default useApiList;
