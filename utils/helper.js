@@ -7,6 +7,7 @@ import { STATUS } from '@/constant/common/constant';
 import showToast from './showToast';
 import Router from 'next/router';
 import { apiList, commonApiList } from '@/api/apiList';
+import chroma from 'chroma-js';
 
 // logout
 export const logout = async () => {
@@ -167,3 +168,10 @@ export function groupBy(data, groupKey, valueKeys) {
     return acc;
   }, {});
 }
+
+export const convertHexToRgba = (hexArray, alpha = 1) => {
+  return hexArray.map((hex) => {
+    const [r, g, b] = chroma(hex).rgb(); // Get RGB values
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`; // Return RGBA format
+  });
+};

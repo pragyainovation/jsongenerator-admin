@@ -9,7 +9,6 @@ const DynamicBarChart = ({ data, options }) => {
     responsive: true,
     maintainAspectRatio: false,
     aspectRatio: 1.2, // Aspect ratio when resizing
-    backgroundColor: 'rgba(0, 0, 0, 0)', // Background color of chart
     animation: {
       duration: 1000, // Animation duration for chart rendering
     },
@@ -63,16 +62,10 @@ const DynamicBarChart = ({ data, options }) => {
       mode: options?.hoverMode ?? 'nearest', // Hover interaction mode
       animationDuration: options?.hoverAnimationDuration ?? 400, // Duration of hover animation
     },
-    elements: {
-      bar: {
-        borderWidth: options?.barBorderWidth ?? 2, // Bar border width
-        borderColor: options?.barBorderColor ?? 'rgba(0, 0, 0, 1)', // Bar border color
-      },
-    },
   };
 
   // Merging static options with dynamic options passed as props
-  const mergedOptions = { ...staticOptions, ...options };
+  const mergedOptions = { ...staticOptions };
 
   return <Bar data={data} options={mergedOptions} />;
 };

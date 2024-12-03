@@ -66,7 +66,7 @@ const DynamicLineChart = ({ data, options = {} }) => {
   };
 
   // Merge static options with dynamic options passed from the parent
-  const mergedOptions = { ...staticOptions, ...options };
+  const mergedOptions = { ...staticOptions };
 
   return <Line data={data} options={mergedOptions} />;
 };

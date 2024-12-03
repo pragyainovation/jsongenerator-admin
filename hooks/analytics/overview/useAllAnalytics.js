@@ -6,11 +6,36 @@ import { useDispatch, useSelector } from 'react-redux';
 function useAllAnalytics() {
   const dispatch = useDispatch();
   const { isLoading, data } = useSelector(analyticsData);
-  const getAnalyticsData = async () => {
+
+  const getFetchData = async () => {
     const response = await dispatch(
       getAnalytics({
         data: {
-          requests: [{ endpoint: 'createdSchema' }, { endpoint: 'createdJson' }],
+          requests: [
+            { endpoint: 'createdSchema' },
+            { endpoint: 'totalCreatedJson' },
+            {
+              endpoint: 'highUsedAPI',
+              data: {
+                options: {
+                  page: 1,
+                  pageSize: 5,
+                  isPaginate: false,
+                },
+                filter: [
+                  {
+                    searchColumns: 'lastAccessed',
+                    type: 'date',
+                    startDate: '',
+                    endDate: '',
+                  },
+                ],
+                sort: {
+                  totalHitCount: -1,
+                },
+              },
+            },
+          ],
         },
       })
     );
@@ -21,9 +46,11 @@ function useAllAnalytics() {
       });
     }
   };
+
   useEffect(() => {
-    getAnalyticsData();
+    getFetchData();
   }, []);
+
   return { data, isLoading };
 }
 

@@ -67,7 +67,7 @@ const Sidebar = () => {
         return (
           <div key={index}>
             <button
-              className={classNames('capitalize inline-block p-2 w-full cursor-pointer', {
+              className={classNames('capitalize inline-block text-start p-2 w-full cursor-pointer', {
                 'bg-black text-white rounded': openGroup === item.group,
                 'hover:bg-white hover:text-black rounded': openGroup !== item.group,
               })}

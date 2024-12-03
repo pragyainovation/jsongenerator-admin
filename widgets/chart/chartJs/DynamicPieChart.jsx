@@ -55,7 +55,7 @@ const DynamicPieChart = ({ data, options }) => {
   };
 
   // Merging static options with dynamic options passed as props
-  const mergedOptions = { ...staticOptions, ...options };
+  const mergedOptions = { ...staticOptions };
 
   return <Pie data={data} options={mergedOptions} />;
 };
