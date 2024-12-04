@@ -4,11 +4,11 @@ import classNames from 'classnames';
 import SimpleLoader from '../loader/SimpleLoader';
 import { Tooltip } from 'react-tooltip';
 
-function Button({ id, tooltip, text = null, onClick, type = 'button', className = '', disabled = false, onlyOutLine = false, icon = null, isLoading = false, noClass = false }) {
+function Button({ id, tooltip, text = null, onClick, type = 'button', className = '', disabled = false, onlyOutLine = false, icon = null, isLoading = false, noClass = false, ...other }) {
   const isDark = useSelector((state) => state[SLICE_NAME.THEME].isDark);
 
   // Use classNames for conditional class names
-  const buttonClass = classNames(className, {
+  const buttonClass = classNames(className, 'capitalize', {
     // Conditionally apply styles based on theme and outline preference
     'duration-200 font-bold  py-2 px-4 italic rounded-lg shadow-md border-2 flex gap-2 items-center justify-center': !noClass,
     'bg-transparent hover:bg-secondary border-white': onlyOutLine && isDark && !disabled && !noClass,
@@ -20,8 +20,8 @@ function Button({ id, tooltip, text = null, onClick, type = 'button', className 
 
   return (
     <div className="shrink-0">
-      <button id={id} type={type} onClick={onClick} className={buttonClass} disabled={disabled}>
-        {isLoading && <SimpleLoader istext={false} color="text-white" />} {icon && icon} {text && <span className="capitalize">{text}</span>}
+      <button {...other} id={id} type={type} onClick={onClick} className={buttonClass} disabled={disabled}>
+        {isLoading && <SimpleLoader istext={false} color="text-white" />} {icon && icon} {text && text}
       </button>
       {tooltip && id && (
         <Tooltip anchorSelect={`#${id}`} className="z-10" place="top">

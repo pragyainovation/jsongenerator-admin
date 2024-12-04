@@ -1,16 +1,18 @@
-import { STATUS } from '@/constant/common/constant';
+import { BUTTON } from '@/constant/common/constant';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { loginSchema } from '@/validation/registerValidation';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginData, loginUser, resetLoginForm, setLoginFormData } from '@/redux/slice/loginSlice';
-import { useEffect } from 'react';
-import { ERouter } from '@/utils/helper';
+import { loginData, loginUser, resendOtp, resetLoginForm, setLoginFormData, verifyOtp } from '@/redux/slice/loginSlice';
+import { useState } from 'react';
+import { ERouter, fullfiledHandler } from '@/utils/helper';
 import route from '@/route/routes';
 
 function useLogin() {
   const dispatch = useDispatch();
-  const { data, isLoading, response } = useSelector(loginData); // form data from Redux
+  const { data, isLoading } = useSelector(loginData); // form data from Redux
+
+  const [openDialog, setOpenDialog] = useState(null);
 
   const {
     handleSubmit,
@@ -22,18 +24,35 @@ function useLogin() {
     defaultValues: data, // Set the default values from Redux state
   });
 
-  const onSubmit = async (data) => {
-    dispatch(setLoginFormData(data)); // store in redux
-    dispatch(loginUser({ data })); // login api call
+  const onSubmit = async (value) => {
+    dispatch(setLoginFormData({ name: 'loginData', value })); // store in redux
+    const response = await dispatch(loginUser({ data: value })); // login api call
+
+    if (fullfiledHandler(response?.meta?.requestStatus)) {
+      setOpenDialog(BUTTON.OTP);
+    }
   };
 
-  useEffect(() => {
-    async function setSession() {
+  const handleResendOtp = async () => {
+    await dispatch(resendOtp({ data: data?.loginData }));
+  };
+
+  const handleVerifyOtp = async (otp) => {
+    const response = await dispatch(
+      verifyOtp({
+        data: {
+          email: data?.loginData.email,
+          otp,
+        },
+      })
+    );
+
+    if (fullfiledHandler(response?.meta?.requestStatus)) {
       const result = await fetch('/api/setSession', {
         method: 'POST',
         body: JSON.stringify({
-          user: response.user,
-          token: response.token,
+          user: response?.payload?.user,
+          token: response?.payload.token,
         }),
         headers: {
           'Content-Type': 'application/json',
@@ -45,11 +64,23 @@ function useLogin() {
         ERouter.push(route.dashboard);
       }
     }
+  };
 
-    if (response?.token) {
-      setSession();
+  const handleOtp = (buttonName, otp) => {
+    switch (buttonName) {
+      case 'submit': {
+        handleVerifyOtp(otp);
+        return;
+      }
+      case 'resend': {
+        handleResendOtp();
+        return;
+      }
+      default: {
+        console.error('Otp, Action not recognized!');
+      }
     }
-  }, [response]);
+  };
 
   return {
     handleSubmit,
@@ -57,7 +88,10 @@ function useLogin() {
     errors,
     reset,
     onSubmit,
-    isLoading: isLoading === STATUS.LOADING, // Check if the form is loading
+    openDialog,
+    setOpenDialog,
+    isLoading,
+    handleOtp,
   };
 }
 

@@ -4,9 +4,13 @@ import HookFormInput from '@/widgets/inputField/HookFormInput';
 import Link from 'next/link';
 import route from '@/route/routes';
 import useLogin from '@/hooks/auth/useLogin';
+import DialogBox from '@/widgets/DialogBox';
+import { BUTTON } from '@/constant/common/constant';
+import { loaderHandler } from '@/utils/helper';
+import Otp from '@/widgets/Otp';
 
 function Login() {
-  const { handleSubmit, control, isLoading, onSubmit } = useLogin();
+  const { handleSubmit, control, isLoading, onSubmit, openDialog, setOpenDialog, handleOtp } = useLogin();
 
   return (
     <div className="bg-light w-screen h-screen flex justify-center items-center">
@@ -24,7 +28,7 @@ function Login() {
           </motion.div>
 
           <motion.div className="mt-4" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Button type="submit" text="Login" isLoading={isLoading} className="w-full" />
+            <Button type="submit" text="Login" isLoading={loaderHandler(isLoading)} className="w-full" />
           </motion.div>
 
           <motion.div className="text-center text-sm  my-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3, duration: 0.5 }}>
@@ -34,6 +38,10 @@ function Login() {
             </Link>
           </motion.div>
         </form>
+
+        <DialogBox isOpen={openDialog === BUTTON.OTP} onClose={() => setOpenDialog(null)}>
+          {openDialog === BUTTON.OTP && <Otp timerDuration={60} isLoading={isLoading} callback={(buttonName, otp) => handleOtp(buttonName, otp)} />}
+        </DialogBox>
       </motion.div>
     </div>
   );

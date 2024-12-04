@@ -18,7 +18,7 @@ const DialogBox = ({ isOpen, onClose, children }) => {
     <>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 bg-white bg-opacity-50 flex justify-center items-center z-50"
+          className="fixed inset-0 bg-white bg-opacity-50 flex justify-center items-center z-50 p-1"
           initial="hidden"
           animate="visible"
           exit="hidden"

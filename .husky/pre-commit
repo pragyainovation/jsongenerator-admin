@@ -1,2 +1,3 @@
 npm run husky:run
 npm run format
+npm run gitAdd

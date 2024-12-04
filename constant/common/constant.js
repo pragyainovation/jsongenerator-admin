@@ -38,6 +38,7 @@ export const BUTTON = {
   PAYMENT: 'payment',
   FILTER: 'filter',
   SORT: 'sort',
+  OTP: 'otp',
 };
 
 export const PAYMENT = {

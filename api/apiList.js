@@ -7,6 +7,10 @@ const apiList = {
     url: () => `/admin/auth/login`,
     method: 'POST',
   },
+  verifyOtp: {
+    url: () => `/admin/auth/verify-otp`,
+    method: 'POST',
+  },
   userNameVerify: {
     url: () => `/admin/auth/username-verify`,
     method: 'POST',

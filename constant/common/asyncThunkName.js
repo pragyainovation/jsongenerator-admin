@@ -5,6 +5,10 @@ export const THUNK_NAME = {
   REGISTER: `${SLICE_NAME.REGISTER}/submit`,
   LOGIN: `${SLICE_NAME.LOGIN}/submit`,
 
+  // otp
+  OTP: `${SLICE_NAME.OTP}/otpSubmit`,
+  RESEND_OTP: `${SLICE_NAME.OTP}/resendOtp`,
+
   //analytics
   ANALYTICS: `${SLICE_NAME.ANALYTICS}/getData`,
 

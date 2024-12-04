@@ -6,7 +6,6 @@ import { getIronSession } from 'iron-session';
 import { STATUS } from '@/constant/common/constant';
 import showToast from './showToast';
 import Router from 'next/router';
-import { apiList, commonApiList } from '@/api/apiList';
 import chroma from 'chroma-js';
 
 // logout
@@ -82,10 +81,8 @@ export function handleAsyncThunk({
         commonAPI,
         auth,
       });
-      const apiConfig = commonAPI ? commonApiList[apiName] : apiList[apiName];
-      const { method } = apiConfig;
 
-      method.toUpperCase() !== 'POST' && showToast(response?.message, STATUS.SUCCESS);
+      apiName !== 'list' && showToast(response?.message, STATUS.SUCCESS);
 
       return response?.data ?? response;
     } catch (error) {

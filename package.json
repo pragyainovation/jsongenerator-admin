@@ -9,6 +9,7 @@
     "lint": "eslint . --fix",
     "husky:run": "npm run lint-staged",
     "lint-staged": "lint-staged",
+    "gitAdd": "git add .",
     "prepare": "husky",
     "format": "prettier --write ."
   },
@@ -63,8 +64,7 @@
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
       "eslint --fix",
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   }
 }

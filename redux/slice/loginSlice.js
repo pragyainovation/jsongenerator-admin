@@ -11,6 +11,18 @@ export const loginUser = handleAsyncThunk({
   auth: false,
 });
 
+export const verifyOtp = handleAsyncThunk({
+  thunkName: THUNK_NAME.OTP,
+  apiName: 'verifyOtp',
+  auth: false,
+});
+
+export const resendOtp = handleAsyncThunk({
+  thunkName: THUNK_NAME.RESEND_OTP,
+  apiName: 'userLogin',
+  auth: false,
+});
+
 const loginSlice = createSlice({
   name: SLICE_NAME.LOGIN,
   initialState,
@@ -22,7 +34,11 @@ const loginSlice = createSlice({
   },
   extraReducers: (builder) => {
     // Handle createUser action
-    handleAsyncState(builder, loginUser, true);
+    handleAsyncState(builder, loginUser);
+
+    handleAsyncState(builder, verifyOtp, true);
+
+    handleAsyncState(builder, resendOtp);
   },
 });
 
