@@ -5,6 +5,7 @@ const nextConfig = {
     NEXT_PUBLIC_NODE_MODE: process.env.NEXT_PUBLIC_NODE_MODE,
     NEXT_PUBLIC_SESSION_SECRET: process.env.NEXT_PUBLIC_SESSION_SECRET,
     NEXT_PUBLIC_TIMEZONE: process.env.NEXT_PUBLIC_TIMEZONE,
+    NEXT_PUBLIC_SOCKET_URL: process.env.NEXT_PUBLIC_SOCKET_URL,
     NEXT_PUBLIC_API: process.env.NEXT_PUBLIC_API,
   },
   async redirects() {

@@ -11,7 +11,15 @@ import ApiAnalyticsForm from './ApiAnalyticsForm';
 import ApiAnalyticsFilter from './ApiAnalyticsFilter';
 
 function ApiAnalytics() {
-  const { isLoading, data, columns, onPageChange, openOverlay, setOpenOverlay, handleFilter } = useApiList();
+  const {
+    isLoading,
+    data,
+    columns,
+    onPageChange,
+    openOverlay,
+    setOpenOverlay,
+    handleFilter,
+  } = useApiList();
   return (
     <div
       className={classNames('h-full overflow-y-hidden grid p-1 relative', {
@@ -23,21 +31,46 @@ function ApiAnalytics() {
         {/* filter and notice */}
         <div>
           <div className="flex justify-end">
-            <Button onClick={() => setOpenOverlay(BUTTON.FILTER)} icon={<FilterIcon iconClass={'text-white'} />} />
+            <Button
+              onClick={() => setOpenOverlay(BUTTON.FILTER)}
+              icon={<FilterIcon iconClass={'text-white'} />}
+            />
           </div>
         </div>
 
         {/* table */}
-        <div className="overflow-y-auto scrollbar-hide">{data?.apiList?.docs && <DataTable columns={columns} data={data?.apiList} onPageChange={onPageChange} />}</div>
+        <div className="overflow-y-auto scrollbar-hide">
+          {data?.apiList?.docs && (
+            <DataTable
+              columns={columns}
+              data={data?.apiList}
+              onPageChange={onPageChange}
+            />
+          )}
+        </div>
       </LoaderWarpper>
 
       {/* side overlay */}
-      <SideOverlay isOpen={openOverlay === BUTTON.FILTER} onClose={() => setOpenOverlay(null)} title="Filter">
-        <ApiAnalyticsFilter handleFilter={handleFilter} onClose={() => setOpenOverlay(null)} />
+      <SideOverlay
+        isOpen={openOverlay === BUTTON.FILTER}
+        onClose={() => setOpenOverlay(null)}
+        title="Filter"
+      >
+        <ApiAnalyticsFilter
+          handleFilter={handleFilter}
+          onClose={() => setOpenOverlay(null)}
+        />
       </SideOverlay>
 
-      <SideOverlay isOpen={openOverlay === BUTTON.VIEW} onClose={() => setOpenOverlay(null)} className={'sm:w-[50vw]'} title="View Api">
-        {openOverlay === BUTTON.VIEW && <ApiAnalyticsForm openOverlay={openOverlay} />}
+      <SideOverlay
+        isOpen={openOverlay === BUTTON.VIEW}
+        onClose={() => setOpenOverlay(null)}
+        className={'sm:w-[50vw]'}
+        title="View Api"
+      >
+        {openOverlay === BUTTON.VIEW && (
+          <ApiAnalyticsForm openOverlay={openOverlay} />
+        )}
       </SideOverlay>
     </div>
   );

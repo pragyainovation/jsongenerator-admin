@@ -4,7 +4,13 @@ import SimpleLoader from '@/widgets/loader/SimpleLoader';
 function LoaderWarpper({ isLoading, children }) {
   return (
     <>
-      {loaderHandler(isLoading) && <SimpleLoader isAbsoulte text={'loading...'} className="flex gap-2 items-center" />}
+      {loaderHandler(isLoading) && (
+        <SimpleLoader
+          isAbsoulte
+          text={'loading...'}
+          className="flex gap-2 items-center"
+        />
+      )}
       {children}
     </>
   );

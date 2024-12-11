@@ -1,5 +1,9 @@
 import { BUTTON } from '@/constant/common/constant';
-import { getPermissionList, permissionData, setPermissionData } from '@/redux/slice/permissionSlice';
+import {
+  getPermissionList,
+  permissionData,
+  setPermissionData,
+} from '@/redux/slice/permissionSlice';
 import { rolesData, setRolesData, updateRoles } from '@/redux/slice/rolesSlice';
 import { fullfiledHandler, getId, groupBy } from '@/utils/helper';
 import { useEffect } from 'react';
@@ -10,7 +14,8 @@ function useRoles({ openOverlay, setOpenOverlay }) {
   const dispatch = useDispatch();
 
   const { isLoading, data } = useSelector(rolesData);
-  const { isLoading: permissionLoading, data: permissionDetails } = useSelector(permissionData);
+  const { isLoading: permissionLoading, data: permissionDetails } =
+    useSelector(permissionData);
 
   async function getFetchData() {
     const response = await dispatch(
@@ -22,7 +27,10 @@ function useRoles({ openOverlay, setOpenOverlay }) {
     );
 
     if (fullfiledHandler(response?.meta?.requestStatus)) {
-      const groupData = groupBy(response?.payload, 'categoryName', ['_id', 'permission']);
+      const groupData = groupBy(response?.payload, 'categoryName', [
+        '_id',
+        'permission',
+      ]);
       dispatch(setPermissionData({ name: 'permissionList', value: groupData }));
     }
   }
@@ -61,11 +69,15 @@ function useRoles({ openOverlay, setOpenOverlay }) {
         const payloadData = {
           permissions: data?.roleData?.permissions,
         };
-        const responseData = await dispatch(updateRoles({ data: payloadData, params }));
+        const responseData = await dispatch(
+          updateRoles({ data: payloadData, params })
+        );
 
         if (fullfiledHandler(responseData?.meta?.requestStatus)) {
           const updatedData = data?.rolesList?.docs?.map((item) => {
-            return item?._id === responseData?.payload?._id ? { ...responseData?.payload } : item;
+            return item?._id === responseData?.payload?._id
+              ? { ...responseData?.payload }
+              : item;
           });
           dispatch(setRolesData({ key: 'rolesList.docs', value: updatedData }));
           setOpenOverlay(null);

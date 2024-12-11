@@ -145,7 +145,11 @@ function useUsersList() {
       Cell: ({ row }) => {
         return (
           <div>
-            <ActionTab isView isEdit onClick={(data) => handleAction(data, row?.original)} />
+            <ActionTab
+              isView
+              isEdit
+              onClick={(data) => handleAction(data, row?.original)}
+            />
           </div>
         );
       },

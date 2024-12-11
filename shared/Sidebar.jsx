@@ -27,6 +27,7 @@ const Sidebar = () => {
     { name: 'roles', href: route.roles },
     { name: 'tickets', href: route.tickets },
     { name: 'donation', href: route.doantion },
+    { name: 'notification', href: route.notification },
     'break',
     {
       group: 'analytics',
@@ -52,7 +53,14 @@ const Sidebar = () => {
         return <hr key={index} className="my-2" />;
       }
 
-      return <MemoizedCommonLink key={index} href={item.href} text={item.name} isActive={router.pathname === item.href} />;
+      return (
+        <MemoizedCommonLink
+          key={index}
+          href={item.href}
+          text={item.name}
+          isActive={router.pathname === item.href}
+        />
+      );
     });
   };
 
@@ -67,17 +75,26 @@ const Sidebar = () => {
         return (
           <div key={index}>
             <button
-              className={classNames('capitalize inline-block text-start p-2 w-full cursor-pointer', {
-                'bg-black text-white rounded': openGroup === item.group,
-                'hover:bg-white hover:text-black rounded': openGroup !== item.group,
-              })}
+              className={classNames(
+                'capitalize inline-block text-start p-2 w-full cursor-pointer',
+                {
+                  'bg-black text-white rounded': openGroup === item.group,
+                  'hover:bg-white hover:text-black rounded':
+                    openGroup !== item.group,
+                }
+              )}
               onClick={() => toggleGroup(item.group)} // Toggle the group
             >
               {item.group}
             </button>
             {/* Render submenu only if the group is open */}
             {openGroup === item.group && (
-              <motion.div initial={{ height: 0 }} animate={{ height: 'auto' }} transition={{ duration: 0.3 }} className="pl-4 mt-2 overflow-hidden">
+              <motion.div
+                initial={{ height: 0 }}
+                animate={{ height: 'auto' }}
+                transition={{ duration: 0.3 }}
+                className="pl-4 mt-2 overflow-hidden"
+              >
                 {renderSubMenu(item.subMenu)}
               </motion.div>
             )}
@@ -85,12 +102,23 @@ const Sidebar = () => {
         );
       }
 
-      return <MemoizedCommonLink key={index} href={item.href} text={item.name} isActive={router.pathname === item.href} />;
+      return (
+        <MemoizedCommonLink
+          key={index}
+          href={item.href}
+          text={item.name}
+          isActive={router.pathname === item.href}
+        />
+      );
     });
   };
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
       {renderMenuItems()}
     </motion.div>
   );

@@ -4,7 +4,8 @@ function Help() {
   const faqs = [
     {
       question: 'What is this platform about?',
-      answer: 'This platform helps you manage your tasks, collaborate with team members, and improve productivity with ease.',
+      answer:
+        'This platform helps you manage your tasks, collaborate with team members, and improve productivity with ease.',
     },
     {
       question: 'How can I reset my password?',
@@ -12,7 +13,8 @@ function Help() {
     },
     {
       question: 'Is my data secure on this platform?',
-      answer: 'Yes, we use industry-standard encryption and security protocols to ensure your data is safe.',
+      answer:
+        'Yes, we use industry-standard encryption and security protocols to ensure your data is safe.',
     },
   ];
 
@@ -24,9 +26,18 @@ function Help() {
 
         {/* Video Section */}
         <div className="mb-8">
-          <h2 className="text-lg font-semibold mb-4">Watch the Overview Video</h2>
+          <h2 className="text-lg font-semibold mb-4">
+            Watch the Overview Video
+          </h2>
           <div className="aspect-w-16 aspect-h-9">
-            <iframe className="w-full rounded-lg shadow-lg" src="https://www.youtube.com/embed/xcJtL7QggTI?si=_892ZnImCmcr8nZI" title="Platform Overview" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+            <iframe
+              className="w-full rounded-lg shadow-lg"
+              src="https://www.youtube.com/embed/xcJtL7QggTI?si=_892ZnImCmcr8nZI"
+              title="Platform Overview"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
           </div>
         </div>
 

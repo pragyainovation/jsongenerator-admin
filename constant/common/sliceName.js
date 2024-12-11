@@ -10,5 +10,6 @@ export const SLICE_NAME = {
   DONATION: 'donation',
   TICKET: 'ticket',
   METRICS: 'metrics',
+  NOTIFICATION: 'notification',
   OTP: 'otp',
 };

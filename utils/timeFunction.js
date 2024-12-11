@@ -8,7 +8,10 @@ const { TIME_UNIT } = require('@/constant/common/constant');
  * @param {string} [timezone] - Timezone name (e.g., 'America/Los_Angeles')
  * @returns {string} - Formatted current date
  */
-const getCurrentDate = (format = MOMENT_FORMATS.DATE_ISO_FULL, timezone = config.TIMEZONE) => {
+const getCurrentDate = (
+  format = MOMENT_FORMATS.DATE_ISO_FULL,
+  timezone = config.TIMEZONE
+) => {
   return momentTimezone.tz(timezone).format(format);
 };
 
@@ -19,7 +22,11 @@ const getCurrentDate = (format = MOMENT_FORMATS.DATE_ISO_FULL, timezone = config
  * @param {string} [timezone] - Timezone name (e.g., 'America/Los_Angeles')
  * @returns {string} - Formatted date
  */
-const formatDate = (date, format = MOMENT_FORMATS.DATE_ISO_FULL, timezone = config.TIMEZONE) => {
+const formatDate = (
+  date,
+  format = MOMENT_FORMATS.DATE_ISO_FULL,
+  timezone = config.TIMEZONE
+) => {
   return momentTimezone.tz(date, timezone).format(format);
 };
 
@@ -42,8 +49,15 @@ const parseDate = (dateString, timezone = config.TIMEZONE) => {
  * @param {string} [timezone] - Timezone name (e.g., 'America/Los_Angeles')
  * @returns {number} - Difference in the specified unit
  */
-const getDateDifference = (startDate, endDate, unit = MOMENT_FORMATS.MINUTES, timezone = config.TIMEZONE) => {
-  return momentTimezone.tz(endDate, timezone).diff(momentTimezone.tz(startDate, timezone), unit);
+const getDateDifference = (
+  startDate,
+  endDate,
+  unit = MOMENT_FORMATS.MINUTES,
+  timezone = config.TIMEZONE
+) => {
+  return momentTimezone
+    .tz(endDate, timezone)
+    .diff(momentTimezone.tz(startDate, timezone), unit);
 };
 
 /**
@@ -54,8 +68,16 @@ const getDateDifference = (startDate, endDate, unit = MOMENT_FORMATS.MINUTES, ti
  * @param {string} [timezone] - Timezone name (e.g., 'America/Los_Angeles')
  * @returns {string} - New date after adding time, formatted as ISO
  */
-const addTimeToDate = (date, amount, unit = MOMENT_FORMATS.MINUTES, timezone = config.TIMEZONE) => {
-  return momentTimezone.tz(date, timezone).add(amount, unit).format(MOMENT_FORMATS.DATE_ISO_FULL);
+const addTimeToDate = (
+  date,
+  amount,
+  unit = MOMENT_FORMATS.MINUTES,
+  timezone = config.TIMEZONE
+) => {
+  return momentTimezone
+    .tz(date, timezone)
+    .add(amount, unit)
+    .format(MOMENT_FORMATS.DATE_ISO_FULL);
 };
 
 /**
@@ -64,7 +86,10 @@ const addTimeToDate = (date, amount, unit = MOMENT_FORMATS.MINUTES, timezone = c
  * @param {string} format - Format to return the date in
  * @returns {string} - Formatted time in the given timezone
  */
-const getCurrentTimeInTimezone = (timezone = config.TIMEZONE, format = MOMENT_FORMATS.DATE_TIME_FULL) => {
+const getCurrentTimeInTimezone = (
+  timezone = config.TIMEZONE,
+  format = MOMENT_FORMATS.DATE_TIME_FULL
+) => {
   return momentTimezone.tz(timezone).format(format);
 };
 
@@ -76,7 +101,12 @@ const getCurrentTimeInTimezone = (timezone = config.TIMEZONE, format = MOMENT_FO
  * @param {string} format - Desired output format
  * @returns {string} - Converted date in the target timezone
  */
-const convertTimezone = (date, fromTimezone, toTimezone, format = MOMENT_FORMATS.DATE_TIME_FULL) => {
+const convertTimezone = (
+  date,
+  fromTimezone,
+  toTimezone,
+  format = MOMENT_FORMATS.DATE_TIME_FULL
+) => {
   return momentTimezone.tz(date, fromTimezone).tz(toTimezone).format(format);
 };
 
@@ -100,7 +130,11 @@ const getTimestampToDate = (timestamp, timezone = config.TIMEZONE) => {
  * @param {string} [timezone] - Timezone name (e.g., 'America/Los_Angeles')
  * @returns {boolean} - True if the date is valid, false otherwise
  */
-const isValidDate = (date, format = MOMENT_FORMATS.DATE_ISO_FULL, timezone = config.TIMEZONE) => {
+const isValidDate = (
+  date,
+  format = MOMENT_FORMATS.DATE_ISO_FULL,
+  timezone = config.TIMEZONE
+) => {
   return momentTimezone.tz(date, timezone, format, true).isValid();
 };
 
@@ -111,7 +145,10 @@ const isValidDate = (date, format = MOMENT_FORMATS.DATE_ISO_FULL, timezone = con
  * @returns {string} - Start of the day in ISO format
  */
 const getStartOfDay = (date, timezone = config.TIMEZONE) => {
-  return momentTimezone.tz(date, timezone).startOf(MOMENT_FORMATS.DAY).format(MOMENT_FORMATS.DATE_ISO_FULL);
+  return momentTimezone
+    .tz(date, timezone)
+    .startOf(MOMENT_FORMATS.DAY)
+    .format(MOMENT_FORMATS.DATE_ISO_FULL);
 };
 
 /**
@@ -121,7 +158,10 @@ const getStartOfDay = (date, timezone = config.TIMEZONE) => {
  * @returns {string} - End of the day in ISO format
  */
 const getEndOfDay = (date, timezone = config.TIMEZONE) => {
-  return momentTimezone.tz(date, timezone).endOf(MOMENT_FORMATS.DAY).format(MOMENT_FORMATS.DATE_ISO_FULL);
+  return momentTimezone
+    .tz(date, timezone)
+    .endOf(MOMENT_FORMATS.DAY)
+    .format(MOMENT_FORMATS.DATE_ISO_FULL);
 };
 
 const convertTimeToMiliSeconds = (value = 1, unit = TIME_UNIT.DAY) => {
@@ -133,7 +173,9 @@ const convertTimeToMiliSeconds = (value = 1, unit = TIME_UNIT.DAY) => {
     case 'days':
       return value * 24 * 60 * 60 * 1000; // Convert days to seconds
     default:
-      throw new Error('Invalid time unit. Please use "hours", "minutes", or "days".');
+      throw new Error(
+        'Invalid time unit. Please use "hours", "minutes", or "days".'
+      );
   }
 };
 

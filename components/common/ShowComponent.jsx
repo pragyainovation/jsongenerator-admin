@@ -42,7 +42,9 @@ function ShowComponent() {
           { value: 'strawberry', label: 'Strawberry', color: '#f69e2e' },
           { value: 'vanilla', label: 'Vanilla', color: '#f3e5ab' },
         ];
-        const filteredOptions = options.filter((option) => option.label.toLowerCase().includes(inputValue.trim().toLowerCase()));
+        const filteredOptions = options.filter((option) =>
+          option.label.toLowerCase().includes(inputValue.trim().toLowerCase())
+        );
         resolve(filteredOptions);
       }, 1000); // Simulate a delay
     });

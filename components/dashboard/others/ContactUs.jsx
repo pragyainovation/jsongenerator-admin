@@ -58,13 +58,24 @@ function ContactUs() {
 
         {/* Button Section */}
         <div className="mt-10 flex flex-wrap justify-center gap-2">
-          <a href="mailto:contact@example.com" className="px-6 py-2 bg-black w-full sm:w-auto text-white rounded-md shadow hover:bg-gray-800">
+          <a
+            href="mailto:contact@example.com"
+            className="px-6 py-2 bg-black w-full sm:w-auto text-white rounded-md shadow hover:bg-gray-800"
+          >
             Email
           </a>
-          <a href="tel:+1234567890" className="px-6 py-2 bg-black w-full sm:w-auto text-white rounded-md shadow hover:bg-gray-800">
+          <a
+            href="tel:+1234567890"
+            className="px-6 py-2 bg-black w-full sm:w-auto text-white rounded-md shadow hover:bg-gray-800"
+          >
             Call
           </a>
-          <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" className="px-6 py-2 bg-black w-full sm:w-auto text-white rounded-md shadow hover:bg-gray-800">
+          <a
+            href="https://wa.me/1234567890"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-2 bg-black w-full sm:w-auto text-white rounded-md shadow hover:bg-gray-800"
+          >
             WhatsApp
           </a>
         </div>

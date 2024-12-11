@@ -1,7 +1,11 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable indent */
 import { BUTTON } from '@/constant/common/constant';
-import { closeTicket, setTicketData, ticketData } from '@/redux/slice/ticketSlice';
+import {
+  closeTicket,
+  setTicketData,
+  ticketData,
+} from '@/redux/slice/ticketSlice';
 import { fullfiledHandler, getId } from '@/utils/helper';
 import { ticketSchema } from '@/validation/ticketValidation';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -31,13 +35,19 @@ function useTicket({ openOverlay, setOpenOverlay }) {
       case BUTTON.CLOSE: {
         const params = getId(data?.ticketData);
         const payloadData = { closedReason: value?.closedReason };
-        const responseData = await dispatch(closeTicket({ data: payloadData, params }));
+        const responseData = await dispatch(
+          closeTicket({ data: payloadData, params })
+        );
 
         if (fullfiledHandler(responseData?.meta?.requestStatus)) {
           const updatedData = data?.ticketList?.docs?.map((item) => {
-            return item?._id === responseData?.payload?._id ? { ...responseData?.payload } : item;
+            return item?._id === responseData?.payload?._id
+              ? { ...responseData?.payload }
+              : item;
           });
-          dispatch(setTicketData({ key: 'ticketList.docs', value: updatedData }));
+          dispatch(
+            setTicketData({ key: 'ticketList.docs', value: updatedData })
+          );
           setOpenOverlay(null);
         }
         return;

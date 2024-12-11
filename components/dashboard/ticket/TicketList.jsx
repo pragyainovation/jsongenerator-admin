@@ -14,7 +14,19 @@ import TicketForm from './TicketForm';
 import useTicketList from '@/hooks/tickets/useTicketList';
 
 function TicketList() {
-  const { data, isLoading, columns, onPageChange, searchListData, openDialog, setOpenDialog, handleConfirm, openOverlay, setOpenOverlay, handleFilter } = useTicketList();
+  const {
+    data,
+    isLoading,
+    columns,
+    onPageChange,
+    searchListData,
+    openDialog,
+    setOpenDialog,
+    handleConfirm,
+    openOverlay,
+    setOpenOverlay,
+    handleFilter,
+  } = useTicketList();
   return (
     <div
       className={classNames('h-full overflow-y-hidden grid p-1 relative', {
@@ -25,29 +37,80 @@ function TicketList() {
       <LoaderWarpper isLoading={isLoading}>
         {/* searchbar */}
         <div className="mb-2 flex justify-end gap-2">
-          <SearchBar className="w-full sm:w-auto" onSearchValue={(searchValue) => searchListData(searchValue)} placeholder="Search ticket..." />
-          <Button onClick={() => setOpenOverlay(BUTTON.FILTER)} icon={<FilterIcon iconClass={'text-white'} />} />
+          <SearchBar
+            className="w-full sm:w-auto"
+            onSearchValue={(searchValue) => searchListData(searchValue)}
+            placeholder="Search ticket..."
+          />
+          <Button
+            onClick={() => setOpenOverlay(BUTTON.FILTER)}
+            icon={<FilterIcon iconClass={'text-white'} />}
+          />
         </div>
 
-        <div className="overflow-y-auto scrollbar-hide">{data?.ticketList?.docs && <DataTable columns={columns} data={data?.ticketList} onPageChange={onPageChange} />}</div>
+        <div className="overflow-y-auto scrollbar-hide">
+          {data?.ticketList?.docs && (
+            <DataTable
+              columns={columns}
+              data={data?.ticketList}
+              onPageChange={onPageChange}
+            />
+          )}
+        </div>
       </LoaderWarpper>
 
       {/* dialogbox */}
-      <DialogBox isOpen={openDialog} onClose={() => (loaderHandler(isLoading) ? {} : setOpenDialog(null))}>
-        {openDialog === BUTTON.CLOSE && <ConfirmationBox openDialog={openDialog} isLoading={isLoading} itemName={data?.ticketData?.subject} buttonClick={() => (openDialog ? handleConfirm(openDialog) : undefined)} />}
+      <DialogBox
+        isOpen={openDialog}
+        onClose={() => (loaderHandler(isLoading) ? {} : setOpenDialog(null))}
+      >
+        {openDialog === BUTTON.CLOSE && (
+          <ConfirmationBox
+            openDialog={openDialog}
+            isLoading={isLoading}
+            itemName={data?.ticketData?.subject}
+            buttonClick={() =>
+              openDialog ? handleConfirm(openDialog) : undefined
+            }
+          />
+        )}
       </DialogBox>
 
       {/* side overlay */}
-      <SideOverlay isOpen={openOverlay === BUTTON.FILTER} onClose={() => setOpenOverlay(null)} title="Filter">
-        <TicketFilter handleFilter={handleFilter} onClose={() => setOpenOverlay(null)} />
+      <SideOverlay
+        isOpen={openOverlay === BUTTON.FILTER}
+        onClose={() => setOpenOverlay(null)}
+        title="Filter"
+      >
+        <TicketFilter
+          handleFilter={handleFilter}
+          onClose={() => setOpenOverlay(null)}
+        />
       </SideOverlay>
 
-      <SideOverlay isOpen={openOverlay === BUTTON.CLOSE} onClose={() => setOpenOverlay(null)} className={'sm:w-[50vw]'} title="Close Ticket">
-        {openOverlay === BUTTON.CLOSE && <TicketForm openOverlay={openOverlay} setOpenOverlay={setOpenOverlay} />}
+      <SideOverlay
+        isOpen={openOverlay === BUTTON.CLOSE}
+        onClose={() => setOpenOverlay(null)}
+        className={'sm:w-[50vw]'}
+        title="Close Ticket"
+      >
+        {openOverlay === BUTTON.CLOSE && (
+          <TicketForm
+            openOverlay={openOverlay}
+            setOpenOverlay={setOpenOverlay}
+          />
+        )}
       </SideOverlay>
 
-      <SideOverlay isOpen={openOverlay === BUTTON.VIEW} onClose={() => setOpenOverlay(null)} className={'sm:w-[50vw]'} title="View Ticket">
-        {openOverlay === BUTTON.VIEW && <TicketForm openOverlay={openOverlay} />}
+      <SideOverlay
+        isOpen={openOverlay === BUTTON.VIEW}
+        onClose={() => setOpenOverlay(null)}
+        className={'sm:w-[50vw]'}
+        title="View Ticket"
+      >
+        {openOverlay === BUTTON.VIEW && (
+          <TicketForm openOverlay={openOverlay} />
+        )}
       </SideOverlay>
     </div>
   );

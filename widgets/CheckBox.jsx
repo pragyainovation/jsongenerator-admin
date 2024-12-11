@@ -8,7 +8,17 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { motion } from 'framer-motion'; // Import Framer Motion
 
-function CheckBox({ label = 'Check me', labelClass = '', id = null, checked = false, onChange, className = '', isRounded = false, isPartial = false, disabled = false }) {
+function CheckBox({
+  label = 'Check me',
+  labelClass = '',
+  id = null,
+  checked = false,
+  onChange,
+  className = '',
+  isRounded = false,
+  isPartial = false,
+  disabled = false,
+}) {
   const isDark = useSelector((state) => state[SLICE_NAME.THEME].isDark);
 
   const [isChecked, setIsChecked] = useState(checked);
@@ -47,7 +57,19 @@ function CheckBox({ label = 'Check me', labelClass = '', id = null, checked = fa
           animate={{ opacity: 1 }} // Animate to full opacity
           transition={{ duration: 0.5 }} // Smooth transition
         >
-          {isChecked ? isRounded ? <CheckedRoundIcon iconClass="hover:text-secondary" /> : isPartial ? <CheckDeterminateBoxIcon iconClass="hover:text-secondary" /> : <CheckedBoxIcon iconClass="hover:text-secondary" /> : isRounded ? <CheckRoundOutLineIcon iconClass="hover:text-secondary" /> : <CheckBoxOutLineIcon iconClass="hover:text-secondary" />}
+          {isChecked ? (
+            isRounded ? (
+              <CheckedRoundIcon iconClass="hover:text-secondary" />
+            ) : isPartial ? (
+              <CheckDeterminateBoxIcon iconClass="hover:text-secondary" />
+            ) : (
+              <CheckedBoxIcon iconClass="hover:text-secondary" />
+            )
+          ) : isRounded ? (
+            <CheckRoundOutLineIcon iconClass="hover:text-secondary" />
+          ) : (
+            <CheckBoxOutLineIcon iconClass="hover:text-secondary" />
+          )}
         </motion.div>
         <motion.label
           htmlFor={id ?? 'custom-checkbox'}

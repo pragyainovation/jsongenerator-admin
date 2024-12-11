@@ -26,7 +26,10 @@ function ApiAnalyticsFilter({ handleFilter, onClose }) {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="grid grid-rows-[1fr_auto] h-full w-full">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="grid grid-rows-[1fr_auto] h-full w-full"
+    >
       <div className="overflow-y-auto custom-scrollbar h-full w-full flex flex-col gap-2 p-1">
         {/* Date Range Picker */}
         <Controller

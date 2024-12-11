@@ -90,7 +90,18 @@ import MOMENT_FORMATS from '@/constant/common/momentConstant';
 import CloseIcon from '@/icon/CloseIcon';
 import Button from '../button/Button';
 
-function CustomDatePicker({ label, isRequired, error, isDateRange = false, minDate, maxDate, dateValue, startdate, enddate, onChange }) {
+function CustomDatePicker({
+  label,
+  isRequired,
+  error,
+  isDateRange = false,
+  minDate,
+  maxDate,
+  dateValue,
+  startdate,
+  enddate,
+  onChange,
+}) {
   const [isShow, setShow] = useState(false);
   const calendarRef = useRef(null);
 
@@ -140,12 +151,27 @@ function CustomDatePicker({ label, isRequired, error, isDateRange = false, minDa
 
   useOutsideClick(calendarRef, () => setShow(false), isShow);
 
-  const formattedValue = isDateRange ? (startDate || endDate ? `${startDate ? formatDate(startDate, MOMENT_FORMATS.DATE_DD_MM_YYYY) : ''} - ${endDate ? formatDate(endDate, MOMENT_FORMATS.DATE_DD_MM_YYYY) : ''}` : '') : date ? formatDate(date, MOMENT_FORMATS.DATE_DD_MM_YYYY) : '';
+  const formattedValue = isDateRange
+    ? startDate || endDate
+      ? `${startDate ? formatDate(startDate, MOMENT_FORMATS.DATE_DD_MM_YYYY) : ''} - ${endDate ? formatDate(endDate, MOMENT_FORMATS.DATE_DD_MM_YYYY) : ''}`
+      : ''
+    : date
+      ? formatDate(date, MOMENT_FORMATS.DATE_DD_MM_YYYY)
+      : '';
 
   return (
     <div className="relative shrink-0" ref={calendarRef}>
       <div className="flex items-center relative">
-        <InputField isRequired={isRequired} value={formattedValue} label={label} placeholder="Select date..." error={error} readOnly inputClassName="!bg-white" onClick={() => setShow(!isShow)} />
+        <InputField
+          isRequired={isRequired}
+          value={formattedValue}
+          label={label}
+          placeholder="Select date..."
+          error={error}
+          readOnly
+          inputClassName="!bg-white"
+          onClick={() => setShow(!isShow)}
+        />
         {!isRequired && (isDateRange ? startDate || endDate : date) && (
           <div className="absolute top-9 right-1 cursor-pointer">
             <Button noClass icon={<CloseIcon />} onClick={handleClear} />
@@ -158,7 +184,9 @@ function CustomDatePicker({ label, isRequired, error, isDateRange = false, minDa
           rangeColors={['var(--secondary)']}
           minDate={minDate}
           maxDate={maxDate}
-          className={classNames('custom-date-range overflow-hidden border-2 bg-white z-20 rounded-lg border-secondary absolute')}
+          className={classNames(
+            'custom-date-range overflow-hidden border-2 bg-white z-20 rounded-lg border-secondary absolute'
+          )}
           onChange={handleSelectRange}
           ranges={[selectionRange]}
           showDateDisplay={false} // Turn off default date display

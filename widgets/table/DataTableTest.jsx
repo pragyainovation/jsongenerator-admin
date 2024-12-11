@@ -41,7 +41,10 @@ const DataTable = ({ columns, data }) => {
   return (
     <>
       <div className="border border-gray5 rounded-md overflow-hidden w-full">
-        <table {...getTableProps()} className={classNames('w-full border-collapse')}>
+        <table
+          {...getTableProps()}
+          className={classNames('w-full border-collapse')}
+        >
           <thead>
             {headerGroups.map((headerGroup, theadIndex) => {
               const { key, ...headerProps } = headerGroup.getHeaderGroupProps(); // Destructure key here
@@ -90,7 +93,12 @@ const DataTable = ({ columns, data }) => {
                       <motion.td
                         key={`${tbodyTrIndex}-${key}`} // Directly assign 'key' to <motion.td>
                         {...cellProps}
-                        className={classNames('border border-gray5 p-2', { 'border-b-0': isLastRow }, { 'border-l-0': isFirstColumn }, { 'border-r-0': isLastColumn })}
+                        className={classNames(
+                          'border border-gray5 p-2',
+                          { 'border-b-0': isLastRow },
+                          { 'border-l-0': isFirstColumn },
+                          { 'border-r-0': isLastColumn }
+                        )}
                       >
                         {cell.render('Cell')}
                       </motion.td>
@@ -102,8 +110,19 @@ const DataTable = ({ columns, data }) => {
           </tbody>
         </table>
       </div>
-      <SkeletonWrapper data={pageCount} content={<ListSkeleton listCount={1} />}>
-        <Pagination pageIndex={pageIndex} pageCount={pageCount} onPageChange={gotoPage} canPreviousPage={canPreviousPage} canNextPage={canNextPage} nextPage={nextPage} previousPage={previousPage} />
+      <SkeletonWrapper
+        data={pageCount}
+        content={<ListSkeleton listCount={1} />}
+      >
+        <Pagination
+          pageIndex={pageIndex}
+          pageCount={pageCount}
+          onPageChange={gotoPage}
+          canPreviousPage={canPreviousPage}
+          canNextPage={canNextPage}
+          nextPage={nextPage}
+          previousPage={previousPage}
+        />
       </SkeletonWrapper>
     </>
   );

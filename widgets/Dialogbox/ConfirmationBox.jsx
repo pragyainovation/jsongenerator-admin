@@ -30,7 +30,12 @@ function ConfirmationBox({
   return (
     <div className="flex flex-col gap-2">
       <span>{getMessage()}</span>
-      <Button text={buttonLabel} onClick={buttonClick} isLoading={loaderHandler(isLoading)} className="w-full" />
+      <Button
+        text={buttonLabel}
+        onClick={buttonClick}
+        isLoading={loaderHandler(isLoading)}
+        className="w-full"
+      />
     </div>
   );
 }

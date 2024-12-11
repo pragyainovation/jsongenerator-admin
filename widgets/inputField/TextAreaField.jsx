@@ -39,7 +39,13 @@ const TextAreaField = ({
       </label>
 
       <div className="w-full">
-        <button type="button" className="flex items-center w-full relative" onClick={onClick} aria-label="Click to interact" onKeyDown={(e) => handleKeyDown(onClick, e)}>
+        <button
+          type="button"
+          className="flex items-center w-full relative"
+          onClick={onClick}
+          aria-label="Click to interact"
+          onKeyDown={(e) => handleKeyDown(onClick, e)}
+        >
           <textarea
             {...field}
             id={id}
@@ -54,13 +60,16 @@ const TextAreaField = ({
               inputClassName, // Use dynamic class passed in inputClassName
               {
                 'pr-14': isLoading, // Add right padding if the loader is present
-                'border-red-500': error?.message ?? error?.[field?.name]?.message, // Highlight border on error
+                'border-red-500':
+                  error?.message ?? error?.[field?.name]?.message, // Highlight border on error
               }
             )}
           />
           {(isCopy || isPaste) && (
             <div className="absolute inset-y-0 right-2 top-2 flex items-center">
-              {isPaste && <Button noClass icon={<PasteIcon />} onClick={handlePaste} />}
+              {isPaste && (
+                <Button noClass icon={<PasteIcon />} onClick={handlePaste} />
+              )}
               {isCopy && !isCopied && (
                 <Button
                   noClass
@@ -74,7 +83,9 @@ const TextAreaField = ({
                   }}
                 />
               )}
-              {isCopy && isCopied && <Button noClass icon={<DoubleCheckIcon />} />}
+              {isCopy && isCopied && (
+                <Button noClass icon={<DoubleCheckIcon />} />
+              )}
             </div>
           )}
           {isLoading && (
@@ -84,7 +95,11 @@ const TextAreaField = ({
           )}
         </button>
 
-        {error && <p className="mt-1 text-xs text-red-500">{error?.message ?? error?.[field?.name]?.message}</p>}
+        {error && (
+          <p className="mt-1 text-xs text-red-500">
+            {error?.message ?? error?.[field?.name]?.message}
+          </p>
+        )}
       </div>
     </div>
   );

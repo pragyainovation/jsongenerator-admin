@@ -14,7 +14,11 @@ function Profile({ user }) {
     <div className="border rounded w-full h-full overflow-y-auto custom-scrollbar">
       <div className="w-full bg-black flex flex-col gap-5 items-center p-10 text-white relative">
         <div className="absolute right-1 top-1">
-          <Button noClass onClick={() => setOpenDialog(BUTTON.EDIT)} icon={<EditIcon iconClass={'!text-white'} />} />
+          <Button
+            noClass
+            onClick={() => setOpenDialog(BUTTON.EDIT)}
+            icon={<EditIcon iconClass={'!text-white'} />}
+          />
         </div>
         <div className="w-32 aspect-square rounded-full bg-white flex justify-center items-center shrink-0">
           <UserIcon iconClass="!text-7xl" />
@@ -33,12 +37,27 @@ function Profile({ user }) {
 
         <h6>Password :</h6>
         <div>
-          <Button onClick={() => setOpenDialog('updatePassword')} text={'Edit Password'} />
+          <Button
+            onClick={() => setOpenDialog('updatePassword')}
+            text={'Edit Password'}
+          />
         </div>
       </div>
       <DialogBox isOpen={openDialog} onClose={() => setOpenDialog(null)}>
-        {openDialog === BUTTON.EDIT && <ConfirmationBox openDialog={openDialog} itemName="Profile" buttonClick={() => ERouter.push(route.editProfile)} />}
-        {openDialog === 'updatePassword' && <ConfirmationBox openDialog={openDialog} contentText='Are you sure you want to update "Password"?' buttonClick={() => ERouter.push(route.EditPassword)} />}
+        {openDialog === BUTTON.EDIT && (
+          <ConfirmationBox
+            openDialog={openDialog}
+            itemName="Profile"
+            buttonClick={() => ERouter.push(route.editProfile)}
+          />
+        )}
+        {openDialog === 'updatePassword' && (
+          <ConfirmationBox
+            openDialog={openDialog}
+            contentText='Are you sure you want to update "Password"?'
+            buttonClick={() => ERouter.push(route.EditPassword)}
+          />
+        )}
       </DialogBox>
     </div>
   );

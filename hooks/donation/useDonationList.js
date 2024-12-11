@@ -1,6 +1,14 @@
-import { BUTTON, STATUS, TABLE_DEFAULT_LIMIT } from '@/constant/common/constant';
+import {
+  BUTTON,
+  STATUS,
+  TABLE_DEFAULT_LIMIT,
+} from '@/constant/common/constant';
 import MOMENT_FORMATS from '@/constant/common/momentConstant';
-import { donationData, getDonationList, setDonationData } from '@/redux/slice/donationSlice';
+import {
+  donationData,
+  getDonationList,
+  setDonationData,
+} from '@/redux/slice/donationSlice';
 import showToast from '@/utils/showToast';
 import { formatDate } from '@/utils/timeFunction';
 import ActionTab from '@/widgets/table/ActionTab';
@@ -30,7 +38,9 @@ function useDonationList() {
     );
 
     if (response?.meta?.requestStatus === STATUS.FULFILLED) {
-      dispatch(setDonationData({ name: 'donationList', value: response?.payload }));
+      dispatch(
+        setDonationData({ name: 'donationList', value: response?.payload })
+      );
     }
   }
 
@@ -123,7 +133,13 @@ function useDonationList() {
       Cell: ({ row }) => {
         return (
           <div>
-            <ActionTab isCopy isView onClick={(data, setCopied) => handleAction(data, row?.original, setCopied)} />
+            <ActionTab
+              isCopy
+              isView
+              onClick={(data, setCopied) =>
+                handleAction(data, row?.original, setCopied)
+              }
+            />
           </div>
         );
       },

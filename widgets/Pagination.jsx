@@ -7,7 +7,13 @@ import classNames from 'classnames';
 import { useState } from 'react';
 import SimpleDropdown from './dropdown/SimpleDropdown';
 
-const Pagination = ({ pageIndex, pageCount, onPageChange, isPageCount = true, isPageSelector = true }) => {
+const Pagination = ({
+  pageIndex,
+  pageCount,
+  onPageChange,
+  isPageCount = true,
+  isPageSelector = true,
+}) => {
   const isDark = useSelector((state) => state[SLICE_NAME.THEME].isDark);
 
   const [currentPage, setCurrentPage] = useState(pageIndex);
@@ -26,10 +32,18 @@ const Pagination = ({ pageIndex, pageCount, onPageChange, isPageCount = true, is
   return (
     <div className="flex items-center justify-between mt-1 gap-2 w-full">
       <div className="flex gap-2 items-center">
-        {isPageSelector && <SimpleDropdown defaultValue={Options[1]} onChange={(e) => onPageChange({ pageSelector: e.value })} isClearable={false} options={Options} />}
+        {isPageSelector && (
+          <SimpleDropdown
+            defaultValue={Options[1]}
+            onChange={(e) => onPageChange({ pageSelector: e.value })}
+            isClearable={false}
+            options={Options}
+          />
+        )}
         {isPageCount && (
           <span className="shrink-0">
-            Page <strong>{currentPage + 1}</strong> of <strong>{pageCount}</strong>
+            Page <strong>{currentPage + 1}</strong> of{' '}
+            <strong>{pageCount}</strong>
           </span>
         )}
       </div>

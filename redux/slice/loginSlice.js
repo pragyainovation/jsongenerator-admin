@@ -1,6 +1,11 @@
 import { THUNK_NAME } from '@/constant/common/asyncThunkName';
 const { SLICE_NAME } = require('@/constant/common/sliceName');
-import { handleAsyncState, handleAsyncThunk, getInitState, clearInitState } from '@/utils/helper';
+import {
+  handleAsyncState,
+  handleAsyncThunk,
+  getInitState,
+  clearInitState,
+} from '@/utils/helper';
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = getInitState({});

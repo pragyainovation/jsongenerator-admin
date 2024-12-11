@@ -5,7 +5,16 @@
     "node": true
   },
   "ignorePatterns": ["node_modules/", ".next/"],
-  "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:@next/next/recommended", "plugin:prettier/recommended", "plugin:react-hooks/recommended", "plugin:jsx-a11y/recommended", "plugin:import/errors", "plugin:import/warnings"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@next/next/recommended",
+    "plugin:prettier/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings"
+  ],
   "plugins": ["prettier", "react", "react-hooks", "jsx-a11y", "import"],
   "parserOptions": {
     "ecmaFeatures": {

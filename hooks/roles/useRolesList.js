@@ -6,7 +6,11 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { formatDate } from '@/utils/timeFunction';
 import MOMENT_FORMATS from '@/constant/common/momentConstant';
-import { getRolesList, rolesData, setRolesData } from '@/redux/slice/rolesSlice';
+import {
+  getRolesList,
+  rolesData,
+  setRolesData,
+} from '@/redux/slice/rolesSlice';
 
 function useRolesList() {
   const dispatch = useDispatch();
@@ -131,7 +135,11 @@ function useRolesList() {
       Cell: ({ row }) => {
         return (
           <div>
-            <ActionTab isView isEdit={row?.original?.roleName !== ROLES.ADMIN} onClick={(data) => handleAction(data, row?.original)} />
+            <ActionTab
+              isView
+              isEdit={row?.original?.roleName !== ROLES.ADMIN}
+              onClick={(data) => handleAction(data, row?.original)}
+            />
           </div>
         );
       },

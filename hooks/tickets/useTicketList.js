@@ -1,5 +1,14 @@
-import { BUTTON, STATUS, TABLE_DEFAULT_LIMIT, TICKET } from '@/constant/common/constant';
-import { getTicketlist, setTicketData, ticketData } from '@/redux/slice/ticketSlice';
+import {
+  BUTTON,
+  STATUS,
+  TABLE_DEFAULT_LIMIT,
+  TICKET,
+} from '@/constant/common/constant';
+import {
+  getTicketlist,
+  setTicketData,
+  ticketData,
+} from '@/redux/slice/ticketSlice';
 import ActionTab from '@/widgets/table/ActionTab';
 import CustomHeader from '@/widgets/table/CustomCell';
 import { useEffect, useState } from 'react';
@@ -156,7 +165,11 @@ function useTicketList() {
         const isOpen = row?.original?.status === TICKET.OPEN;
         return (
           <div>
-            <ActionTab isView isClose={isOpen} onClick={(data) => handleAction(data, row?.original)} />
+            <ActionTab
+              isView
+              isClose={isOpen}
+              onClick={(data) => handleAction(data, row?.original)}
+            />
           </div>
         );
       },
