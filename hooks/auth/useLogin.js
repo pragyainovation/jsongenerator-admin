@@ -3,7 +3,14 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { loginSchema } from '@/validation/registerValidation';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginData, loginUser, resendOtp, resetLoginForm, setLoginFormData, verifyOtp } from '@/redux/slice/loginSlice';
+import {
+  loginData,
+  loginUser,
+  resendOtp,
+  resetLoginForm,
+  setLoginFormData,
+  verifyOtp,
+} from '@/redux/slice/loginSlice';
 import { useState } from 'react';
 import { ERouter, fullfiledHandler } from '@/utils/helper';
 import route from '@/route/routes';

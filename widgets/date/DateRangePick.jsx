@@ -18,7 +18,14 @@ function DateRangePick() {
     key: 'selection',
   };
 
-  return <DateRange rangeColors={['var(--secondary)']} className="border-2 rounded-lg border-secondary overflow-hidden text-black" onChange={handleSelect} ranges={[selectionRange]} />;
+  return (
+    <DateRange
+      rangeColors={['var(--secondary)']}
+      className="border-2 rounded-lg border-secondary overflow-hidden text-black"
+      onChange={handleSelect}
+      ranges={[selectionRange]}
+    />
+  );
 }
 
 export default DateRangePick;

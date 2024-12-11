@@ -1,5 +1,9 @@
 import { STATUS } from '@/constant/common/constant';
-import { createUser, registerData, setRegisterFormData } from '@/redux/slice/registerSlice';
+import {
+  createUser,
+  registerData,
+  setRegisterFormData,
+} from '@/redux/slice/registerSlice';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { registerSchema } from '@/validation/registerValidation';
 import { useEffect } from 'react';

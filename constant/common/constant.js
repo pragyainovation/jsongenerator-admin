@@ -26,6 +26,7 @@ export const TIME_UNIT = {
 
 export const BUTTON = {
   CANCEL: 'cancel',
+  CREATE: 'create',
   VIEW: 'view',
   RESET: 'reset',
   EDIT: 'edit',
@@ -38,6 +39,7 @@ export const BUTTON = {
   PAYMENT: 'payment',
   FILTER: 'filter',
   SORT: 'sort',
+  SEND: 'send',
   OTP: 'otp',
 };
 

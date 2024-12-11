@@ -10,7 +10,14 @@ function CustomCalander() {
 
   const [date, setDate] = useState(new Date());
 
-  return <Calendar color="var(--secondary)" className="border-2 rounded-lg border-secondary" date={date} onChange={handleSelect} />;
+  return (
+    <Calendar
+      color="var(--secondary)"
+      className="border-2 rounded-lg border-secondary"
+      date={date}
+      onChange={handleSelect}
+    />
+  );
 }
 
 export default CustomCalander;

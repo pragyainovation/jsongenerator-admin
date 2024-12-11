@@ -40,6 +40,12 @@ const apiList = {
     method: 'PUT',
   },
 
+  // notification
+  pushNotification: {
+    url: ({ params }) => `/admin/notification/push-notification/${params}`,
+    method: 'POST',
+  },
+
   // ticket
   closedTicket: {
     url: ({ params }) => `/admin/ticket/close-ticket/${params}`,

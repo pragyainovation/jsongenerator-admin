@@ -29,10 +29,27 @@ function TicketFilter({ handleFilter, onClose }) {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="grid grid-rows-[1fr_auto] h-full w-full">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="grid grid-rows-[1fr_auto] h-full w-full"
+    >
       <div className="overflow-y-auto custom-scrollbar h-full w-full flex flex-col gap-2">
         {/* Status Dropdown */}
-        <Controller control={control} name="status" render={({ field, fieldState: { error } }) => <SimpleDropdown {...field} label="Status" options={OPTIONS.TICKET_STATUS} error={error?.message} isClearable={false} value={field.value || null} placeholder="Select status..." />} />
+        <Controller
+          control={control}
+          name="status"
+          render={({ field, fieldState: { error } }) => (
+            <SimpleDropdown
+              {...field}
+              label="Status"
+              options={OPTIONS.TICKET_STATUS}
+              error={error?.message}
+              isClearable={false}
+              value={field.value || null}
+              placeholder="Select status..."
+            />
+          )}
+        />
 
         {/* Date Range Picker */}
         <Controller

@@ -7,4 +7,12 @@ export const OPTIONS = {
     { label: 'open', value: 'open' },
     { label: 'closed', value: 'closed' },
   ],
+  NOTIFICATION_STATUS: [
+    { label: 'pending', value: 'pending' },
+    { label: 'send', value: 'send' },
+  ],
+  BOOLEAN: [
+    { label: 'true', value: `${true}` },
+    { label: 'false', value: `${false}` },
+  ],
 };

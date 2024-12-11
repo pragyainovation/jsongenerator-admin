@@ -29,7 +29,12 @@ async function fetchToken() {
   }
 }
 
-async function setHeaders({ contentType = 'application/json', authToken = true, userAgent, origin }) {
+async function setHeaders({
+  contentType = 'application/json',
+  authToken = true,
+  userAgent,
+  origin,
+}) {
   const headers = {
     'Content-Type': contentType,
     Accept: 'application/json',
@@ -41,7 +46,10 @@ async function setHeaders({ contentType = 'application/json', authToken = true, 
       headers.Authorization = `JWT ${token}`;
     } else {
       console.warn('Token is missing. Skipping Authorization header.');
-      showToast('Token is missing. Skipping Authorization header.', STATUS.WARN);
+      showToast(
+        'Token is missing. Skipping Authorization header.',
+        STATUS.WARN
+      );
     }
   }
 
@@ -66,13 +74,22 @@ async function handleError(response) {
   }
 
   const errorData = await response.json();
-  const message = errorData?.message || 'An unexpected error occurred. Please try again later.';
+  const message =
+    errorData?.message ||
+    'An unexpected error occurred. Please try again later.';
   showToast(message, STATUS.ERROR);
   console.error('API Error:', message);
   return Promise.reject(new Error(message));
 }
 
-const fetchAPI = async ({ apiName, data = undefined, params, module = '', commonAPI = false, auth = true }) => {
+const fetchAPI = async ({
+  apiName,
+  data = undefined,
+  params,
+  module = '',
+  commonAPI = false,
+  auth = true,
+}) => {
   try {
     const baseUrl = config.ROOT_API;
     const apiConfig = commonAPI ? commonApiList[apiName] : apiList[apiName];
@@ -83,7 +100,9 @@ const fetchAPI = async ({ apiName, data = undefined, params, module = '', common
     }
 
     const { url: urlFunction, method, baseurl } = apiConfig;
-    const finalUrl = commonAPI ? urlFunction({ module, params }) : urlFunction({ params });
+    const finalUrl = commonAPI
+      ? urlFunction({ module, params })
+      : urlFunction({ params });
 
     const headers = await setHeaders({ authToken: auth });
 
@@ -106,12 +125,18 @@ const fetchAPI = async ({ apiName, data = undefined, params, module = '', common
     return response.json();
   } catch (error) {
     if (error instanceof TypeError) {
-      showToast('The server is currently unavailable. Please try again later.', STATUS.ERROR);
+      showToast(
+        'The server is currently unavailable. Please try again later.',
+        STATUS.ERROR
+      );
       throw error;
     }
 
     console.error('Error in fetchAPI:', error);
-    showToast('An unexpected error occurred. Please try again later.', STATUS.ERROR);
+    showToast(
+      'An unexpected error occurred. Please try again later.',
+      STATUS.ERROR
+    );
     throw error;
   }
 };

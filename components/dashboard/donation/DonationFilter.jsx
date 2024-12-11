@@ -46,13 +46,44 @@ function DonationFilter({ handleFilter, onClose }) {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="grid grid-rows-[1fr_auto] h-full w-full">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="grid grid-rows-[1fr_auto] h-full w-full"
+    >
       <div className="overflow-y-auto custom-scrollbar h-full w-full flex flex-col gap-2 p-1">
         {/* Currency Dropdown */}
-        <Controller control={control} name="currency" render={({ field, fieldState: { error } }) => <SimpleDropdown {...field} label="Currency" options={currencyOptions} error={error?.message} isClearable={false} value={field.value || null} placeholder="Select currency..." />} />
+        <Controller
+          control={control}
+          name="currency"
+          render={({ field, fieldState: { error } }) => (
+            <SimpleDropdown
+              {...field}
+              label="Currency"
+              options={currencyOptions}
+              error={error?.message}
+              isClearable={false}
+              value={field.value || null}
+              placeholder="Select currency..."
+            />
+          )}
+        />
 
         {/* Status Dropdown */}
-        <Controller control={control} name="status" render={({ field, fieldState: { error } }) => <SimpleDropdown {...field} label="Status" options={OPTIONS.PAYMENT_STATUS} error={error?.message} isClearable={false} value={field.value || null} placeholder="Select status..." />} />
+        <Controller
+          control={control}
+          name="status"
+          render={({ field, fieldState: { error } }) => (
+            <SimpleDropdown
+              {...field}
+              label="Status"
+              options={OPTIONS.PAYMENT_STATUS}
+              error={error?.message}
+              isClearable={false}
+              value={field.value || null}
+              placeholder="Select status..."
+            />
+          )}
+        />
 
         {/* Date Range Picker */}
         <Controller
@@ -87,10 +118,28 @@ function DonationFilter({ handleFilter, onClose }) {
             return (
               <div>
                 <div className="flex gap-2">
-                  <InputField value={value?.startPrice || ''} onChange={(e) => onChange({ ...value, startPrice: e.target.value })} type="number" label="Start Price" placeholder="Enter start price..." />
-                  <InputField value={value?.endPrice || ''} onChange={(e) => onChange({ ...value, endPrice: e.target.value })} type="number" label="End Price" placeholder="Enter end price..." />
+                  <InputField
+                    value={value?.startPrice || ''}
+                    onChange={(e) =>
+                      onChange({ ...value, startPrice: e.target.value })
+                    }
+                    type="number"
+                    label="Start Price"
+                    placeholder="Enter start price..."
+                  />
+                  <InputField
+                    value={value?.endPrice || ''}
+                    onChange={(e) =>
+                      onChange({ ...value, endPrice: e.target.value })
+                    }
+                    type="number"
+                    label="End Price"
+                    placeholder="Enter end price..."
+                  />
                 </div>
-                {error && <p className="text-red-500 text-sm mt-2">{error?.message}</p>}
+                {error && (
+                  <p className="text-red-500 text-sm mt-2">{error?.message}</p>
+                )}
               </div>
             );
           }}

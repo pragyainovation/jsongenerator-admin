@@ -81,10 +81,28 @@ const Otp = ({ digitCount = 6, timerDuration = 300, callback }) => {
           />
         ))}
       </div>
-      <div className="timer flex my-1 justify-center">{timer > 0 ? <span>Time left: {formatTimer()}</span> : <span>Time expired. Please resend OTP.</span>}</div>
+      <div className="timer flex my-1 justify-center">
+        {timer > 0 ? (
+          <span>Time left: {formatTimer()}</span>
+        ) : (
+          <span>Time expired. Please resend OTP.</span>
+        )}
+      </div>
       <div className="flex gap-2 w-full justify-center">
-        <Button text={'Submit OTP'} name="submit" onClick={onSubmit} disabled={otp.includes('') || canResend} className="w-full" />
-        <Button text={'Resend OTP'} name="resend" onClick={onSubmit} disabled={!canResend && otp !== ''} className="w-full" />
+        <Button
+          text={'Submit OTP'}
+          name="submit"
+          onClick={onSubmit}
+          disabled={otp.includes('') || canResend}
+          className="w-full"
+        />
+        <Button
+          text={'Resend OTP'}
+          name="resend"
+          onClick={onSubmit}
+          disabled={!canResend && otp !== ''}
+          className="w-full"
+        />
       </div>
     </div>
   );

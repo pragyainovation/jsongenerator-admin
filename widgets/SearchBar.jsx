@@ -3,7 +3,11 @@ import InputField from './inputField/InputField';
 import classNames from 'classnames';
 import { useDebounce } from 'use-debounce';
 
-function SearchBar({ placeholder = 'Search...', className = '', onSearchValue }) {
+function SearchBar({
+  placeholder = 'Search...',
+  className = '',
+  onSearchValue,
+}) {
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setTyping] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -29,7 +33,12 @@ function SearchBar({ placeholder = 'Search...', className = '', onSearchValue })
 
   return (
     <div className={classNames(className)}>
-      <InputField isLoading={loading} placeholder={placeholder} value={inputValue} onChange={handleInputChange} />
+      <InputField
+        isLoading={loading}
+        placeholder={placeholder}
+        value={inputValue}
+        onChange={handleInputChange}
+      />
     </div>
   );
 }

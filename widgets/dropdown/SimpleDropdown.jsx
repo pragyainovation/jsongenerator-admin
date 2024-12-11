@@ -2,7 +2,26 @@ import { useState } from 'react';
 import Select from 'react-select';
 import chroma from 'chroma-js';
 
-function SimpleDropdown({ name, options = [], isRtl = false, label, isSearchable = true, isClearable = true, isDisabled = false, className = 'basic-single', classNamePrefix = 'select', isDot = false, ismulti = false, defaultValue, closemenuonselect = true, placeholder = 'select...', onChange, error, isRequired, ...field }) {
+function SimpleDropdown({
+  name,
+  options = [],
+  isRtl = false,
+  label,
+  isSearchable = true,
+  isClearable = true,
+  isDisabled = false,
+  className = 'basic-single',
+  classNamePrefix = 'select',
+  isDot = false,
+  ismulti = false,
+  defaultValue,
+  closemenuonselect = true,
+  placeholder = 'select...',
+  onChange,
+  error,
+  isRequired,
+  ...field
+}) {
   const [secondaryColor] = useState('#000');
   // const [hasMounted, setHasMounted] = useState(false);
 
@@ -42,9 +61,21 @@ function SimpleDropdown({ name, options = [], isRtl = false, label, isSearchable
     }),
     option: (styles, { data, isDisabled, isFocused, isSelected }) => {
       const color = data?.color ? chroma(data.color) : chroma(secondaryColor);
-      const backgroundColor = isDisabled ? undefined : isSelected ? color.css() : isFocused ? color.alpha(0.1).css() : undefined;
+      const backgroundColor = isDisabled
+        ? undefined
+        : isSelected
+          ? color.css()
+          : isFocused
+            ? color.alpha(0.1).css()
+            : undefined;
 
-      const textColor = isDisabled ? '#ccc' : isSelected ? (chroma.contrast(color, 'white') > 2 ? 'white' : 'black') : color.css();
+      const textColor = isDisabled
+        ? '#ccc'
+        : isSelected
+          ? chroma.contrast(color, 'white') > 2
+            ? 'white'
+            : 'black'
+          : color.css();
 
       return {
         ...styles,
@@ -53,7 +84,11 @@ function SimpleDropdown({ name, options = [], isRtl = false, label, isSearchable
         cursor: isDisabled ? 'not-allowed' : 'pointer',
         ':active': {
           ...styles[':active'],
-          backgroundColor: !isDisabled ? (isSelected ? color : color.alpha(0.3).css()) : undefined,
+          backgroundColor: !isDisabled
+            ? isSelected
+              ? color
+              : color.alpha(0.3).css()
+            : undefined,
         },
       };
     },
@@ -105,7 +140,9 @@ function SimpleDropdown({ name, options = [], isRtl = false, label, isSearchable
       <Select
         className={`text-black w-full  ${className}`}
         classNamePrefix={classNamePrefix}
-        defaultValue={defaultValue ? defaultValue : options.length > 0 ? options[0] : null}
+        defaultValue={
+          defaultValue ? defaultValue : options.length > 0 ? options[0] : null
+        }
         isDisabled={isDisabled}
         isClearable={isClearable}
         isRtl={isRtl}
@@ -120,7 +157,11 @@ function SimpleDropdown({ name, options = [], isRtl = false, label, isSearchable
         menuPlacement="auto"
         {...field}
       />
-      {error && <p className="mt-1 text-xs text-red-500">{error?.message ?? error?.[field?.name]?.message}</p>}
+      {error && (
+        <p className="mt-1 text-xs text-red-500">
+          {error?.message ?? error?.[field?.name]?.message}
+        </p>
+      )}
     </div>
   );
 }

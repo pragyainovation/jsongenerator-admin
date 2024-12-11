@@ -32,11 +32,15 @@ function useUsers({ openOverlay, setOpenOverlay }) {
           userName: value?.userName,
           fullName: value?.fullName,
         };
-        const responseData = await dispatch(updateUser({ data: payloadData, params }));
+        const responseData = await dispatch(
+          updateUser({ data: payloadData, params })
+        );
 
         if (fullfiledHandler(responseData?.meta?.requestStatus)) {
           const updatedData = data?.usersList?.docs?.map((item) => {
-            return item?._id === responseData?.payload?._id ? { ...responseData?.payload } : item;
+            return item?._id === responseData?.payload?._id
+              ? { ...responseData?.payload }
+              : item;
           });
           dispatch(setUserData({ key: 'usersList.docs', value: updatedData }));
           setOpenOverlay(null);

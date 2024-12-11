@@ -1,4 +1,8 @@
-import { analyticsData, getAnalytics, setAnayticData } from '@/redux/slice/analyticsSlice';
+import {
+  analyticsData,
+  getAnalytics,
+  setAnayticData,
+} from '@/redux/slice/analyticsSlice';
 import { fullfiledHandler } from '@/utils/helper';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';

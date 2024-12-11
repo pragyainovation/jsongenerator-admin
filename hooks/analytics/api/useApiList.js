@@ -1,6 +1,14 @@
-import { BUTTON, STATUS, TABLE_DEFAULT_LIMIT } from '@/constant/common/constant';
+import {
+  BUTTON,
+  STATUS,
+  TABLE_DEFAULT_LIMIT,
+} from '@/constant/common/constant';
 import MOMENT_FORMATS from '@/constant/common/momentConstant';
-import { getMetricsList, metricsData, setMetricsData } from '@/redux/slice/metricsSlice';
+import {
+  getMetricsList,
+  metricsData,
+  setMetricsData,
+} from '@/redux/slice/metricsSlice';
 import { formatDate } from '@/utils/timeFunction';
 import ActionTab from '@/widgets/table/ActionTab';
 import CustomHeader from '@/widgets/table/CustomCell';
@@ -106,7 +114,10 @@ function useApiList() {
       Cell: ({ row }) => {
         return (
           <div>
-            <ActionTab isView onClick={(data) => handleAction(data, row?.original)} />
+            <ActionTab
+              isView
+              onClick={(data) => handleAction(data, row?.original)}
+            />
           </div>
         );
       },

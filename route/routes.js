@@ -15,6 +15,8 @@ const route = {
   userAnalytics: '/admin/dashboard/analytics/user',
   apiAnalytics: '/admin/dashboard/analytics/api',
 
+  notification: '/admin/dashboard/notification',
+
   profile: '/admin/dashboard/profile',
   editProfile: '/admin/dashboard/profile/edit',
   EditPassword: '/admin/dashboard/profile/edit-password',

@@ -71,25 +71,30 @@ export function handleAsyncThunk({
   commonAPI = false, // Default value for commonAPI
   auth = true, // Default value for auth
 }) {
-  return createAsyncThunk(thunkName, async ({ data = {}, params = '' }, { rejectWithValue }) => {
-    try {
-      const response = await fetchAPI({
-        apiName,
-        data,
-        params,
-        module,
-        commonAPI,
-        auth,
-      });
+  return createAsyncThunk(
+    thunkName,
+    async ({ data = {}, params = '' }, { rejectWithValue }) => {
+      try {
+        const response = await fetchAPI({
+          apiName,
+          data,
+          params,
+          module,
+          commonAPI,
+          auth,
+        });
 
-      apiName !== 'list' && showToast(response?.message, STATUS.SUCCESS);
+        apiName !== 'list' && showToast(response?.message, STATUS.SUCCESS);
 
-      return response?.data ?? response;
-    } catch (error) {
-      return rejectWithValue(error.message || 'An error occurred during the API call');
+        return response?.data ?? response;
+      } catch (error) {
+        return rejectWithValue(
+          error.message || 'An error occurred during the API call'
+        );
+      }
+      // Use fetchAPI to send the form data to the server
     }
-    // Use fetchAPI to send the form data to the server
-  });
+  );
 }
 
 // redux initialstate

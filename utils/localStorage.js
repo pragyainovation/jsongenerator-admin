@@ -13,7 +13,10 @@ const LocalStorage = {
     try {
       return value !== null ? JSON.parse(value) : null; // Return null if not found
     } catch (error) {
-      console.error(`Error parsing JSON from localStorage key "${key}":`, error);
+      console.error(
+        `Error parsing JSON from localStorage key "${key}":`,
+        error
+      );
       return null; // Return null on error
     }
   },
@@ -22,7 +25,10 @@ const LocalStorage = {
     try {
       localStorage.setItem(key, JSON.stringify(data));
     } catch (error) {
-      console.error(`Error stringifying data for localStorage key "${key}":`, error);
+      console.error(
+        `Error stringifying data for localStorage key "${key}":`,
+        error
+      );
     }
   },
 

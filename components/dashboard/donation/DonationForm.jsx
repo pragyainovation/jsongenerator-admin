@@ -14,7 +14,9 @@ function RecursiveRenderer({ data }) {
                 <RecursiveRenderer data={value} />
               </div>
             ) : (
-              <span className="bg-gray-100 rounded p-1 break-all">{String(value)}</span>
+              <span className="bg-gray-100 rounded p-1 break-all">
+                {String(value)}
+              </span>
             )}
           </div>
         ))}
@@ -28,7 +30,9 @@ function DonationForm() {
   return (
     <form className="grid grid-rows-[1fr_auto] h-full w-full">
       <LoaderWarpper isLoading={isLoading}>
-        <div className="overflow-y-auto custom-scrollbar h-full w-full flex flex-col gap-2 p-1">{data?.donationData && <RecursiveRenderer data={data.donationData} />}</div>
+        <div className="overflow-y-auto custom-scrollbar h-full w-full flex flex-col gap-2 p-1">
+          {data?.donationData && <RecursiveRenderer data={data.donationData} />}
+        </div>
       </LoaderWarpper>
     </form>
   );
